@@ -27,7 +27,15 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className='flex-1 px-2 mx-2'>Navbar Title</div>
+            <div className='flex-1 px-2 mx-2 gap-3'>
+              BRACU Thesis Finder
+              <img
+                src='https://seeklogo.com/images/B/brac-university-logo-30065B3714-seeklogo.com.png'
+                alt='Logo'
+                width='30'
+                height='30'
+              />
+            </div>
             <div className='flex-none'>
               <ul className='menu menu-horizontal flex items-center'>
                 <li>

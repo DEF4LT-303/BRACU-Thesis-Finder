@@ -27,13 +27,12 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className='flex-1 px-2 mx-2 gap-3'>
+            <div className='flex-1 lg:px-2 lg:mx-2 gap-3 text-xs lg:text-base'>
               BRACU Thesis Finder
               <img
                 src='https://seeklogo.com/images/B/brac-university-logo-30065B3714-seeklogo.com.png'
                 alt='Logo'
-                width='30'
-                height='30'
+                className='hidden lg:block lg:w-8 lg:h-8'
               />
             </div>
             <div className='flex-none'>
@@ -61,10 +60,43 @@ const Navbar = () => {
           <ul className='menu p-4 w-80 min-h-full bg-base-200'>
             {/* Sidebar content here */}
             <li>
-              <a>Sidebar Item 1</a>
+              <a>
+                <svg
+                  className='w-6 h-6 text-gray-800 dark:text-white'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 20 20'
+                >
+                  <path
+                    stroke='currentColor'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    stroke-width='2'
+                    d='M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9'
+                  />
+                </svg>
+                Homepage
+              </a>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+              <a>
+                <svg
+                  class='w-6 h-6 text-gray-800 dark:text-white'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 20 18'
+                >
+                  <path
+                    stroke='currentColor'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    stroke-width='2'
+                    d='M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z'
+                  />
+                </svg>
+                Sidebar Item 2
+              </a>
             </li>
           </ul>
         </div>

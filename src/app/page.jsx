@@ -1,5 +1,5 @@
 const page = () => {
-  return <div data-theme='dark'>page</div>;
+  return <div data-theme='light dark:dark'>page</div>;
 };
 
 export default page;

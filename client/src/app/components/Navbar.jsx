@@ -54,23 +54,23 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className='drawer-side'>
+        <div className='drawer-side z-50'>
           <label
             htmlFor='my-drawer-3'
             aria-label='close sidebar'
             className='drawer-overlay'
           ></label>
-          <ul className='menu p-4 w-80 min-h-full bg-base-200 text-lg text-justify'>
+          <ul className='menu p-4 w-80 min-h-full bg-base-200 text-base text-justify'>
             {/* Sidebar content here */}
-            <li className="py-2">
+            <li className='py-2'>
               <a>
-                <HomeIcon/>
+                <HomeIcon />
                 Homepage
               </a>
             </li>
-            <li className="py-2">
+            <li className='py-2'>
               <a>
-                <ChatIcon />        
+                <ChatIcon />
                 Feeds
               </a>
             </li>

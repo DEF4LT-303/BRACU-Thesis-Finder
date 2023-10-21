@@ -12,9 +12,9 @@ const Header = () => {
         <div className='text-center lg:text-left text-slate-300'>
           <h1 className='text-5xl font-bold'>Login now!</h1>
           <p className='py-6'>
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Looking to complete your thesis? Find your groupmates with similar
+            interest here! Create event to recruit memebers or join an existing
+            group.
           </p>
         </div>
         <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>

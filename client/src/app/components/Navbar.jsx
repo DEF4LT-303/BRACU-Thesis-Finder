@@ -62,18 +62,21 @@ const Navbar = () => {
           ></label>
           <ul className='menu p-4 w-80 min-h-full bg-base-200 text-base text-justify'>
             {/* Sidebar content here */}
-            <li className='py-2'>
+            <div className='divider my-2'></div>
+            <li className=''>
               <a>
                 <HomeIcon />
                 Homepage
               </a>
             </li>
-            <li className='py-2'>
+            <div className='divider my-2'></div>
+            <li className=''>
               <a>
                 <ChatIcon />
                 Feeds
               </a>
             </li>
+            <div className='divider my-2'></div>
           </ul>
         </div>
       </div>

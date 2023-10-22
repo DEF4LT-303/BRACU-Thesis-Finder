@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Header = () => {
   return (
     <div
@@ -41,14 +43,28 @@ const Header = () => {
                 required
               />
               <label className='label'>
-                <a href='#' className='label-text-alt link link-hover'>
+                <Link
+                  href='/register'
+                  className='label-text-alt link link-hover'
+                >
                   Don't have an account? Sign Up Here!
-                </a>
+                </Link>
               </label>
             </div>
             <div className='form-control mt-6'>
               <button className='btn btn-primary'>Login</button>
             </div>
+            <div className='divider'>OR</div>
+            <button className='btn bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300'>
+              {/* <span className='loading loading-spinner'></span> */}
+              <img
+                class='w-6 h-6'
+                src='https://www.svgrepo.com/show/475656/google-color.svg'
+                loading='lazy'
+                alt='google logo'
+              ></img>
+              Login with Google
+            </button>
           </form>
         </div>
       </div>

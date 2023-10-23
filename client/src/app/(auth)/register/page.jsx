@@ -2,165 +2,160 @@ import Link from 'next/link';
 
 const Register = () => {
   return (
-    <div className='bg-white dark:bg-gray-900'>
-      <div className='flex justify-center h-screen h-min-screen'>
+    <section class='bg-white dark:bg-gray-900'>
+      <div class='flex justify-center min-h-screen'>
         <div
-          className='hidden bg-cover lg:block lg:w-2/3'
+          class='hidden bg-cover lg:block lg:w-2/5 relative'
           style={{
             backgroundImage:
-              'url(https://images.unsplash.com/photo-1616763355603-9755a640a287?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)'
+              "url('https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80')"
           }}
         >
-          <div className='flex items-center h-full px-20 bg-gray-900 bg-opacity-40'>
-            <div>
-              <Link href='/'>
-                <h2 className='text-2xl font-bold text-white sm:text-3xl'>
-                  BRACU Thesis Finder
-                </h2>
-              </Link>
-
-              <p className='max-w-xl mt-3 text-gray-300'>
-                Dive into the community and find the perfect group for your
-                thesis!
-              </p>
-            </div>
+          <div class='absolute inset-0 bg-gray-900 opacity-30'></div>
+          <div className='absolute inset-0 flex items-center justify-center'>
+            <Link href='/'>
+              <svg
+                id='Layer_1'
+                data-name='Layer 1'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 610.59 625.19'
+                className=' w-36 text-blue-500 fill-current stroke-black stroke-3'
+              >
+                <rect
+                  className='cls-1'
+                  x='273.81'
+                  y='77.73'
+                  width='63.48'
+                  height='546.96'
+                />
+                <polygon
+                  className='cls-1'
+                  points='519.61 .5 456.13 63.98 545.9 63.98 609.38 .5 519.61 .5'
+                />
+                <polygon
+                  className='cls-1'
+                  points='320.02 63.98 383.5 .5 296.31 .5 296.31 .5 141.18 .5 64.69 .5 1.21 63.98 79.64 63.98 79.64 63.98 230.25 63.98 230.25 63.98 320.02 63.98'
+                />
+                <polygon
+                  className='cls-1'
+                  points='486.01 .5 486.01 .5 396.24 .5 332.76 63.98 353.32 63.98 353.32 63.98 443.09 63.98 506.57 .5 486.01 .5'
+                />
+              </svg>
+            </Link>
           </div>
         </div>
 
-        <div className='flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6'>
-          <div className='flex-1'>
-            <div className='text-center'>
-              <div className='flex justify-center mx-auto '>
-                <svg
-                  id='Layer_1'
-                  data-name='Layer 1'
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 610.59 625.19'
-                  className='w-20 h-20 text-blue-500 fill-current'
-                >
-                  <rect
-                    className='cls-1'
-                    x='273.81'
-                    y='77.73'
-                    width='63.48'
-                    height='546.96'
-                  />
-                  <polygon
-                    className='cls-1'
-                    points='519.61 .5 456.13 63.98 545.9 63.98 609.38 .5 519.61 .5'
-                  />
-                  <polygon
-                    className='cls-1'
-                    points='320.02 63.98 383.5 .5 296.31 .5 296.31 .5 141.18 .5 64.69 .5 1.21 63.98 79.64 63.98 79.64 63.98 230.25 63.98 230.25 63.98 320.02 63.98'
-                  />
-                  <polygon
-                    className='cls-1'
-                    points='486.01 .5 486.01 .5 396.24 .5 332.76 63.98 353.32 63.98 353.32 63.98 443.09 63.98 506.57 .5 486.01 .5'
-                  />
-                </svg>
+        <div class='flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5'>
+          <div class='w-full'>
+            <h1 class='text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white'>
+              Create Account
+            </h1>
+
+            <p class='mt-4 text-gray-500 dark:text-gray-400'>
+              Create your account to get registered and start exploring.
+            </p>
+
+            <form class='grid grid-cols-1 gap-6 mt-8 md:grid-cols-2'>
+              <div>
+                <label class='block mb-2 text-sm text-gray-600 dark:text-gray-200'>
+                  First Name
+                </label>
+                <input
+                  type='text'
+                  placeholder='John'
+                  required
+                  class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+                />
               </div>
 
-              <p className='mt-3 text-gray-500 dark:text-gray-300'>
-                Register to create your account
-              </p>
-            </div>
+              <div>
+                <label class='block mb-2 text-sm text-gray-600 dark:text-gray-200'>
+                  Last name
+                </label>
+                <input
+                  type='text'
+                  placeholder='Doe'
+                  required
+                  class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+                />
+              </div>
 
-            <div className='mt-8'>
-              <form>
-                <div>
-                  <label
-                    for='name'
-                    className='block mb-2 text-sm text-gray-600 dark:text-gray-200'
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    type='name'
-                    name='name'
-                    id='name'
-                    placeholder='John Doe'
-                    required
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+              <div>
+                <label class='block mb-2 text-sm text-gray-600 dark:text-gray-200'>
+                  Phone number
+                </label>
+                <input
+                  type='text'
+                  placeholder='XXX-XX-XXXX-XXX'
+                  required
+                  class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+                />
+              </div>
+
+              <div>
+                <label class='block mb-2 text-sm text-gray-600 dark:text-gray-200'>
+                  Email address
+                </label>
+                <input
+                  type='email'
+                  placeholder='johndoe@example.com'
+                  required
+                  class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+                />
+              </div>
+
+              <div>
+                <label class='block mb-2 text-sm text-gray-600 dark:text-gray-200'>
+                  Password
+                </label>
+                <input
+                  type='password'
+                  placeholder='Enter your password'
+                  required
+                  class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+                />
+              </div>
+
+              <div>
+                <label class='block mb-2 text-sm text-gray-600 dark:text-gray-200'>
+                  Confirm password
+                </label>
+                <input
+                  type='password'
+                  placeholder='Enter your password'
+                  required
+                  class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+                />
+              </div>
+
+              <button class='flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50'>
+                <span>Sign Up </span>
+
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  class='w-5 h-5 rtl:-scale-x-100'
+                  viewBox='0 0 20 20'
+                  fill='currentColor'
+                >
+                  <path
+                    fill-rule='evenodd'
+                    d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
+                    clip-rule='evenodd'
                   />
-                </div>
-
-                <div className='mt-6'>
-                  <div>
-                    <label
-                      for='email'
-                      className='block mb-2 text-sm text-gray-600 dark:text-gray-200'
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type='email'
-                      name='email'
-                      id='email'
-                      placeholder='example@example.com'
-                      required
-                      className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
-                    />
-                  </div>
-                </div>
-
-                <div className='mt-6'>
-                  <div className='flex justify-between mb-2'>
-                    <label
-                      for='password'
-                      className='text-sm text-gray-600 dark:text-gray-200'
-                    >
-                      Password
-                    </label>
-                  </div>
-
-                  <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    placeholder='Your Password'
-                    required
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
-                  />
-                </div>
-
-                <div className='mt-6'>
-                  <div className='flex justify-between mb-2'>
-                    <label
-                      for='password'
-                      className='text-sm text-gray-600 dark:text-gray-200'
-                    >
-                      Confirm Password
-                    </label>
-                  </div>
-
-                  <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    placeholder='Confirm Password'
-                    required
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
-                  />
-                </div>
-
-                <div className='mt-6'>
-                  <button className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50'>
-                    Sign up
-                  </button>
-                </div>
-                <div className='divider'>OR</div>
-                <button className='btn w-full bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300'>
-                  {/* <span className='loading loading-spinner'></span> */}
-                  <img
-                    className='w-6 h-6'
-                    src='https://www.svgrepo.com/show/475656/google-color.svg'
-                    loading='lazy'
-                    alt='google logo'
-                  ></img>
-                  Sign up with Google
-                </button>
-              </form>
-
+                </svg>
+              </button>
+              <button className='btn w-full bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300 dark:hover:bg-slate-700'>
+                {/* <span className='loading loading-spinner'></span> */}
+                <img
+                  className='w-6 h-6'
+                  src='https://www.svgrepo.com/show/475656/google-color.svg'
+                  loading='lazy'
+                  alt='google logo'
+                ></img>
+                Login with Google
+              </button>
+            </form>
+            <div className='flex justify-start mx-1'>
               <p className='mt-6 text-sm text-center text-gray-400'>
                 Already have an account?{' '}
                 <Link
@@ -175,7 +170,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

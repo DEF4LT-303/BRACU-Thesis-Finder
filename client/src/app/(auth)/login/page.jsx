@@ -79,7 +79,7 @@ const Login = () => {
                       type='email'
                       name='email'
                       id='email'
-                      placeholder='example@example.com'
+                      placeholder='johndoe@example.com'
                       required
                       className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                     />
@@ -118,7 +118,7 @@ const Login = () => {
                   </button>
                 </div>
                 <div className='divider'>OR</div>
-                <button className='btn w-full bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300'>
+                <button className='btn w-full bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300 dark:hover:bg-slate-700'>
                   {/* <span className='loading loading-spinner'></span> */}
                   <img
                     className='w-6 h-6'

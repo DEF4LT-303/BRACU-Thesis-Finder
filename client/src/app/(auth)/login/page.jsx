@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const Register = () => {
+const Login = () => {
   return (
     <div className='bg-white dark:bg-gray-900'>
       <div className='flex justify-center h-screen'>
@@ -59,29 +59,12 @@ const Register = () => {
               </div>
 
               <p className='mt-3 text-gray-500 dark:text-gray-300'>
-                Register to create your account
+                Login to create your account
               </p>
             </div>
 
             <div className='mt-8'>
               <form>
-                <div>
-                  <label
-                    for='name'
-                    className='block mb-2 text-sm text-gray-600 dark:text-gray-200'
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    type='name'
-                    name='name'
-                    id='name'
-                    placeholder='John Doe'
-                    required
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
-                  />
-                </div>
-
                 <div className='mt-6'>
                   <div>
                     <label
@@ -105,10 +88,17 @@ const Register = () => {
                   <div className='flex justify-between mb-2'>
                     <label
                       for='password'
+                      required
                       className='text-sm text-gray-600 dark:text-gray-200'
                     >
                       Password
                     </label>
+                    <a
+                      href='#'
+                      className='text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline'
+                    >
+                      Forgot password?
+                    </a>
                   </div>
 
                   <input
@@ -116,34 +106,13 @@ const Register = () => {
                     name='password'
                     id='password'
                     placeholder='Your Password'
-                    required
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
-                  />
-                </div>
-
-                <div className='mt-6'>
-                  <div className='flex justify-between mb-2'>
-                    <label
-                      for='password'
-                      className='text-sm text-gray-600 dark:text-gray-200'
-                    >
-                      Confirm Password
-                    </label>
-                  </div>
-
-                  <input
-                    type='password'
-                    name='password'
-                    id='password'
-                    placeholder='Confirm Password'
-                    required
                     className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                   />
                 </div>
 
                 <div className='mt-6'>
                   <button className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50'>
-                    Sign up
+                    Sign in
                   </button>
                 </div>
                 <div className='divider'>OR</div>
@@ -155,14 +124,14 @@ const Register = () => {
                     loading='lazy'
                     alt='google logo'
                   ></img>
-                  Sign up with Google
+                  Login with Google
                 </button>
               </form>
 
               <p className='mt-6 text-sm text-center text-gray-400'>
-                Already have an account?{' '}
+                Don't have an account yet?{' '}
                 <Link
-                  href='/login'
+                  href='/register'
                   className='text-blue-500 focus:outline-none focus:underline hover:underline'
                 >
                   Log in
@@ -177,4 +146,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

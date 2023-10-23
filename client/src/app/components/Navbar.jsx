@@ -31,11 +31,33 @@ const Navbar = () => {
               </label>
             </div>
             <div className='flex-1 lg:px-2 lg:mx-0 gap-3 text-xs lg:text-base'>
-              <img
-                src='https://seeklogo.com/images/B/brac-university-logo-30065B3714-seeklogo.com.png'
-                alt='Logo'
-                className='hidden lg:block lg:w-8 lg:h-8'
-              />
+              <svg
+                id='Layer_1'
+                data-name='Layer 1'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 610.59 625.19'
+                className='w-5 h-5 text-blue-500 fill-current'
+              >
+                <rect
+                  className='cls-1'
+                  x='273.81'
+                  y='77.73'
+                  width='63.48'
+                  height='546.96'
+                />
+                <polygon
+                  className='cls-1'
+                  points='519.61 .5 456.13 63.98 545.9 63.98 609.38 .5 519.61 .5'
+                />
+                <polygon
+                  className='cls-1'
+                  points='320.02 63.98 383.5 .5 296.31 .5 296.31 .5 141.18 .5 64.69 .5 1.21 63.98 79.64 63.98 79.64 63.98 230.25 63.98 230.25 63.98 320.02 63.98'
+                />
+                <polygon
+                  className='cls-1'
+                  points='486.01 .5 486.01 .5 396.24 .5 332.76 63.98 353.32 63.98 353.32 63.98 443.09 63.98 506.57 .5 486.01 .5'
+                />
+              </svg>
               BRACU Thesis Finder
             </div>
             <div className='flex-none'>

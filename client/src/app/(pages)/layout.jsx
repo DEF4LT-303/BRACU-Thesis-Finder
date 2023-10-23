@@ -2,7 +2,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
 export const metadata = {
-  title: 'Homepage',
+  title: 'BRACU Thesis Finder',
   description: 'Homepage'
 };
 

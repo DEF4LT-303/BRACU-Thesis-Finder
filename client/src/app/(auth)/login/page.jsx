@@ -13,9 +13,11 @@ const Login = () => {
         >
           <div className='flex items-center h-full px-20 bg-gray-900 bg-opacity-40'>
             <div>
-              <h2 className='text-2xl font-bold text-white sm:text-3xl'>
-                BRACU Thesis Finder
-              </h2>
+              <Link href='/'>
+                <h2 className='text-2xl font-bold text-white sm:text-3xl'>
+                  BRACU Thesis Finder
+                </h2>
+              </Link>
 
               <p className='max-w-xl mt-3 text-gray-300'>
                 Dive into the community and find the perfect group for your
@@ -134,7 +136,7 @@ const Login = () => {
                   href='/register'
                   className='text-blue-500 focus:outline-none focus:underline hover:underline'
                 >
-                  Log in
+                  Sign Up
                 </Link>
                 .
               </p>

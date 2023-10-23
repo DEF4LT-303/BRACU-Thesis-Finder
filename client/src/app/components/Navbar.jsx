@@ -1,5 +1,6 @@
 import ChatIcon from '@mui/icons-material/Chat';
 import HomeIcon from '@mui/icons-material/Home';
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
@@ -86,17 +87,17 @@ const Navbar = () => {
             {/* Sidebar content here */}
             <div className='divider my-2'></div>
             <li className=''>
-              <a>
+              <Link href='/'>
                 <HomeIcon />
                 Homepage
-              </a>
+              </Link>
             </li>
             <div className='divider my-2'></div>
             <li className=''>
-              <a>
+              <Link href='/feeds'>
                 <ChatIcon />
                 Feeds
-              </a>
+              </Link>
             </li>
             <div className='divider my-2'></div>
           </ul>

@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <div className='min-h-screen'>
+    <div className='h-full'>
       <div class='container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center'>
         <div class='w-full lg:w-1/2'>
           <div class='lg:max-w-lg'>
@@ -138,7 +138,7 @@ const Header = () => {
           <img
             class='object-contain w-full h-full max-w-2xl'
             src='hero_icon.svg'
-            alt='glasses photo'
+            alt='hero icon'
           />
         </div>
       </div>

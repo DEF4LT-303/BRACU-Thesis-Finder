@@ -18,7 +18,7 @@ const feeds = [
 const Feeds = () => {
   return (
     <div className='bg-base-100 min-h-full'>
-      <div className='flex flex-col items-center py-10 px-4 md:px-10 '>
+      <div className='flex flex-col items-center py-10 px-4 md:px-10'>
         {feeds.map((feed) => (
           <Card feed={feed} />
         ))}

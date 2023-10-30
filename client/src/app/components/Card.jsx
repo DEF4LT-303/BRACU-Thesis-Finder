@@ -1,9 +1,9 @@
 const Card = ({ feed }) => {
   return (
-    <div>
+    <div className='w-full'>
       <div
         key={feed.id}
-        className='w-full px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800'
+        className='my-5 px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800'
       >
         <div className='flex items-center justify-between flex-col sm:flex-row gap-3'>
           <span className='text-sm font-light text-gray-600 dark:text-gray-400'>

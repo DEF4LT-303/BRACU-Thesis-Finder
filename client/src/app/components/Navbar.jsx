@@ -32,33 +32,35 @@ const Navbar = () => {
               </label>
             </div>
             <div className='flex-1 lg:px-2 lg:mx-0 gap-3 text-xs lg:text-base'>
-              <svg
-                id='Layer_1'
-                data-name='Layer 1'
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 610.59 625.19'
-                className='w-6 h-6 text-blue-500 fill-current'
-              >
-                <rect
-                  className='cls-1'
-                  x='273.81'
-                  y='77.73'
-                  width='63.48'
-                  height='546.96'
-                />
-                <polygon
-                  className='cls-1'
-                  points='519.61 .5 456.13 63.98 545.9 63.98 609.38 .5 519.61 .5'
-                />
-                <polygon
-                  className='cls-1'
-                  points='320.02 63.98 383.5 .5 296.31 .5 296.31 .5 141.18 .5 64.69 .5 1.21 63.98 79.64 63.98 79.64 63.98 230.25 63.98 230.25 63.98 320.02 63.98'
-                />
-                <polygon
-                  className='cls-1'
-                  points='486.01 .5 486.01 .5 396.24 .5 332.76 63.98 353.32 63.98 353.32 63.98 443.09 63.98 506.57 .5 486.01 .5'
-                />
-              </svg>
+              <Link href='/'>
+                <svg
+                  id='Layer_1'
+                  data-name='Layer 1'
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 610.59 625.19'
+                  className='w-6 h-6 text-blue-500 fill-current'
+                >
+                  <rect
+                    className='cls-1'
+                    x='273.81'
+                    y='77.73'
+                    width='63.48'
+                    height='546.96'
+                  />
+                  <polygon
+                    className='cls-1'
+                    points='519.61 .5 456.13 63.98 545.9 63.98 609.38 .5 519.61 .5'
+                  />
+                  <polygon
+                    className='cls-1'
+                    points='320.02 63.98 383.5 .5 296.31 .5 296.31 .5 141.18 .5 64.69 .5 1.21 63.98 79.64 63.98 79.64 63.98 230.25 63.98 230.25 63.98 320.02 63.98'
+                  />
+                  <polygon
+                    className='cls-1'
+                    points='486.01 .5 486.01 .5 396.24 .5 332.76 63.98 353.32 63.98 353.32 63.98 443.09 63.98 506.57 .5 486.01 .5'
+                  />
+                </svg>
+              </Link>
               BRACU Thesis Finder
             </div>
             <div className='flex-none'>
@@ -95,35 +97,34 @@ const Navbar = () => {
             className='drawer-overlay'
           ></label>
           <div className='flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto scrollbar-hide bg-neutral-content border-r rtl:border-r-0 rtl:border-l dark:bg-base-200 dark:border-gray-700'>
-            <Link href='/'>
-              <svg
-                id='Layer_1'
-                data-name='Layer 1'
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 610.59 625.19'
-                className='w-10 h-10 text-blue-500 fill-current'
-              >
-                <rect
-                  className='cls-1'
-                  x='273.81'
-                  y='77.73'
-                  width='63.48'
-                  height='546.96'
-                />
-                <polygon
-                  className='cls-1'
-                  points='519.61 .5 456.13 63.98 545.9 63.98 609.38 .5 519.61 .5'
-                />
-                <polygon
-                  className='cls-1'
-                  points='320.02 63.98 383.5 .5 296.31 .5 296.31 .5 141.18 .5 64.69 .5 1.21 63.98 79.64 63.98 79.64 63.98 230.25 63.98 230.25 63.98 320.02 63.98'
-                />
-                <polygon
-                  className='cls-1'
-                  points='486.01 .5 486.01 .5 396.24 .5 332.76 63.98 353.32 63.98 353.32 63.98 443.09 63.98 506.57 .5 486.01 .5'
-                />
-              </svg>
-            </Link>
+            <svg
+              id='Layer_1'
+              data-name='Layer 1'
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 610.59 625.19'
+              className='w-10 h-10 text-blue-500 fill-current'
+            >
+              <rect
+                className='cls-1'
+                x='273.81'
+                y='77.73'
+                width='63.48'
+                height='546.96'
+              />
+              <polygon
+                className='cls-1'
+                points='519.61 .5 456.13 63.98 545.9 63.98 609.38 .5 519.61 .5'
+              />
+              <polygon
+                className='cls-1'
+                points='320.02 63.98 383.5 .5 296.31 .5 296.31 .5 141.18 .5 64.69 .5 1.21 63.98 79.64 63.98 79.64 63.98 230.25 63.98 230.25 63.98 320.02 63.98'
+              />
+              <polygon
+                className='cls-1'
+                points='486.01 .5 486.01 .5 396.24 .5 332.76 63.98 353.32 63.98 353.32 63.98 443.09 63.98 506.57 .5 486.01 .5'
+              />
+            </svg>
+
             <div className='flex flex-col justify-between flex-1 mt-6'>
               <nav className='flex-1 -mx-3 space-y-3 '>
                 <Link
@@ -242,7 +243,7 @@ const Navbar = () => {
                     <a href='#' className='flex items-center gap-x-2'>
                       <img
                         className='object-cover rounded-full h-7 w-7'
-                        src='https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&h=634&q=80'
+                        src='https://i.pinimg.com/originals/12/25/7c/12257c071a178a1bbe6ffab5863356cf.jpg'
                         alt='avatar'
                       />
                       <span className='text-sm font-medium text-gray-700 dark:text-gray-200'>

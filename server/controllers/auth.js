@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 // Register
 const register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   try {
     // Check if the email is already registered
@@ -21,7 +21,8 @@ const register = async (req, res) => {
 
     // Create a new user
     const newUser = new User({
-      username,
+      firstName,
+      lastName,
       email,
       password: encryptedPassword
     });
@@ -48,7 +49,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    // !user && res.status(401).json('Wrong username');
+    // !user && res.status(401).json('Wrong email);
     if (!user) {
       return res.status(401).json('Wrong email');
     }
@@ -81,4 +82,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login};
+module.exports = { register, login };

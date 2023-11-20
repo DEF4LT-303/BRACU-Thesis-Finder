@@ -1,6 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+  const user = useSelector((state) => state.user.currentUser);
+
   return (
     <div className='h-full'>
       <div className='container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center'>
@@ -127,9 +132,11 @@ const Header = () => {
 
                 <span className='mx-3'>Complete Your Thesis</span>
               </div>
-              <Link href='/login'>
-                <button className='btn btn-primary w-full'>Sign In</button>
-              </Link>
+              {!user && (
+                <Link href='/login'>
+                  <button className='btn btn-primary w-full'>Sign In</button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

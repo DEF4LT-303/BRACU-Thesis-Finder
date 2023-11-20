@@ -10,13 +10,13 @@ const userSchema = new mongoose.Schema({
     validate: {
       validator: async function (email) {
         const user = await this.constructor.findOne({ email });
-        return !user; 
+        return !user;
       },
       message: 'Email address is already taken'
     }
   },
 
-  firsName: {
+  firstName: {
     type: String,
     default: ''
   },
@@ -81,7 +81,7 @@ const userSchema = new mongoose.Schema({
   materialCount: {
     type: Number,
     default: 0
-  },
+  }
 });
 
 module.exports = mongoose.model.users || mongoose.model('users', userSchema);

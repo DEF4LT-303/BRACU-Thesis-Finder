@@ -69,9 +69,9 @@ const Register = () => {
 
   const user = useSelector((state) => state.user.currentUser);
 
-  // if (user) {
-  //   router.push('/');
-  // }
+  if (user) {
+    router.push('/');
+  }
 
   const isFieldEmpty = (value) => {
     return value.trim() === '' && submitted;

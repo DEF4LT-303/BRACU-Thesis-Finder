@@ -1,6 +1,58 @@
+'use client';
+
+import { login } from '@/api/redux/apiCalls';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { isFetching, error } = useSelector((state) => state.user);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleClicked = async (e) => {
+    e.preventDefault();
+    if (email.trim() === '' || password.trim() === '') {
+      return;
+    }
+
+    try {
+      await login(dispatch, { email, password });
+      router.push('/');
+    } catch (error) {
+      if (error.message === 'Invalid email or password') {
+        setErrorMessage('Invalid email or password');
+      } else {
+        setErrorMessage('An error occurred during login');
+      }
+      setOpenSnackbar(true);
+    }
+  };
+
+  const isFieldEmpty = (value) => {
+    return value.trim() === '' && submitted;
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
+
+  const user = useSelector((state) => state.user.currentUser);
+
+  if (user) {
+    router.push('/');
+  }
+
   return (
     <div className=''>
       <div className='flex justify-center h-screen'>
@@ -81,6 +133,7 @@ const Login = () => {
                       id='email'
                       placeholder='johndoe@example.com'
                       required
+                      onChange={(e) => setEmail(e.target.value)}
                       className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                     />
                   </div>
@@ -108,12 +161,17 @@ const Login = () => {
                     name='password'
                     id='password'
                     placeholder='Your Password'
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
                     className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                   />
                 </div>
 
                 <div className='mt-6'>
-                  <button className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50'>
+                  <button
+                    onClick={handleClicked}
+                    className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50'
+                  >
                     Sign in
                   </button>
                 </div>

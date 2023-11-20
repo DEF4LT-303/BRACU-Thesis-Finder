@@ -1,7 +1,17 @@
+'use client';
+
+import { logout } from '@/api/redux/userRedux';
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Navbar = () => {
-  const user = true;
+  const user = useSelector((state) => state.user.currentUser);
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <>
@@ -67,12 +77,12 @@ const Navbar = () => {
               {user ? (
                 <ul className='menu menu-horizontal flex items-center'>
                   <li>
-                    <a>Logout</a>
+                    <button onClick={handleLogout}>Logout</button>
                   </li>
                   <li>
                     <div className='avatar'>
                       <div className='w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
-                        <img src='https://i.pinimg.com/originals/12/25/7c/12257c071a178a1bbe6ffab5863356cf.jpg' />
+                        <img src={user.photo || '/default.jpg'} />
                       </div>
                     </div>
                   </li>
@@ -243,16 +253,16 @@ const Navbar = () => {
                     <a href='#' className='flex items-center gap-x-2'>
                       <img
                         className='object-cover rounded-full h-7 w-7'
-                        src='https://i.pinimg.com/originals/12/25/7c/12257c071a178a1bbe6ffab5863356cf.jpg'
+                        src={user.photo || '/default.jpg'}
                         alt='avatar'
                       />
                       <span className='text-sm font-medium text-gray-700 dark:text-gray-200'>
-                        John Doe
+                        {user.firstName} {user.lastName}
                       </span>
                     </a>
 
-                    <Link
-                      href='/login'
+                    <button
+                      onClick={handleLogout}
                       className='text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-blue-500 dark:hover:text-blue-400'
                     >
                       <svg
@@ -269,7 +279,7 @@ const Navbar = () => {
                           d='M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75'
                         />
                       </svg>
-                    </Link>
+                    </button>
                   </div>
                 )}
               </div>

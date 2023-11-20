@@ -1,6 +1,82 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../../api/redux/apiCalls';
 
 const Register = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const { isFetching, error } = useSelector((state) => state.user);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    // Check if any field is empty
+    if (
+      firstName.trim() === '' ||
+      lastName.trim() === '' ||
+      email.trim() === '' ||
+      password.trim() === ''
+    ) {
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Invalid email format');
+      setOpenSnackbar(true);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
+      setOpenSnackbar(true);
+      return;
+    }
+
+    try {
+      await register(dispatch, { firstName, lastName, email, password });
+      // dispatch(logout());
+      setErrorMessage('Registration successful');
+      setOpenSnackbar(true);
+      router.push('/login');
+      // setTimeout(() => {
+      //   history.push('/login');
+      // }, 3000);
+    } catch (error) {
+      if (error.message === 'Email already exists') {
+        setErrorMessage('Email already exists');
+      } else {
+        setErrorMessage('An error occurred during registration');
+      }
+      setOpenSnackbar(true);
+    }
+  };
+
+  const user = useSelector((state) => state.user.currentUser);
+
+  // if (user) {
+  //   router.push('/');
+  // }
+
+  const isFieldEmpty = (value) => {
+    return value.trim() === '' && submitted;
+  };
+
   return (
     <section class=''>
       <div class='flex justify-center min-h-screen'>
@@ -64,6 +140,7 @@ const Register = () => {
                   type='text'
                   placeholder='John'
                   required
+                  onChange={(e) => setFirstName(e.target.value)}
                   class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                 />
               </div>
@@ -76,23 +153,12 @@ const Register = () => {
                   type='text'
                   placeholder='Doe'
                   required
+                  onChange={(e) => setLastName(e.target.value)}
                   class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                 />
               </div>
 
-              <div>
-                <label class='block mb-2 text-sm text-gray-600 dark:text-gray-200'>
-                  Phone number
-                </label>
-                <input
-                  type='text'
-                  placeholder='XXX-XX-XXXX-XXX'
-                  required
-                  class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
-                />
-              </div>
-
-              <div>
+              <div className='md:col-span-2'>
                 <label class='block mb-2 text-sm text-gray-600 dark:text-gray-200'>
                   Email address
                 </label>
@@ -100,6 +166,7 @@ const Register = () => {
                   type='email'
                   placeholder='johndoe@example.com'
                   required
+                  onChange={(e) => setEmail(e.target.value)}
                   class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                 />
               </div>
@@ -112,6 +179,7 @@ const Register = () => {
                   type='password'
                   placeholder='Enter your password'
                   required
+                  onChange={(e) => setPassword(e.target.value)}
                   class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                 />
               </div>
@@ -124,11 +192,15 @@ const Register = () => {
                   type='password'
                   placeholder='Enter your password'
                   required
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   class='block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                 />
               </div>
 
-              <button class='flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50'>
+              <button
+                onClick={handleRegister}
+                class='flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50'
+              >
                 <span>Sign Up </span>
 
                 <svg

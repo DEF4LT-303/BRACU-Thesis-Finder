@@ -4,11 +4,15 @@ const app = express();
 const dotenv = require('dotenv');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
+const chatRoutes = require('./routes/chatRoutes');
+const messageRoutes = require('./routes/messageRoutes');
 
 app.use(cors());
 
 dotenv.config();
-
+app.get('/', (req, res) => {
+  res.send('API is running');
+});
 mongoose
   .connect(process.env.DB_CONNECT)
   .then(() => console.log('Connected to MongoDB'))
@@ -16,6 +20,8 @@ mongoose
 
 app.use(express.json());
 app.use('/api/auth', authRoutes);
+app.use('/api/chat', chatRoutes);
+app.use('/api/message', messageRoutes);
 
 app.listen(process.env.PORT, () =>
   console.log(`Server is running on port ${process.env.PORT}`)

@@ -1,18 +1,34 @@
+const AsyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
+const user = require("../models/User");
 
-const verify = (req, res, next) => {
-  const authHeader = req.headers.token;
-  if (authHeader) {
-    const token = authHeader;
-    jwt.verify(token, process.env.JWT_SEC, (err, user) => {
-      if (err) res.status(403).json('Token is not valid!');
-      req.user = user; 
-      next();
-    });
-  } else {
-    return res.status(401).json('You are not authenticated!');
+const verify = AsyncHandler(async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    try {
+      token = req.headers.authorization.split(" ")[1]//taking the token by split method
+      // token will look like, Bearer dadsadadasd
+      const decoded = jwt.verify(token, process.env.JWT_SECRET)
+      // defining a user variable inside the request object
+      req.user = await user.findById(decoded.id).select("-password")
+      //after all the operations are done the next is basically moving on with the api hit function in the userRoutes
+      next()
+
+    } catch (error) {
+      res.status(401)
+      throw new Error("Not authorized, token failed")
+    }
   }
-};
+
+  else if (!token) {
+    res.status(401)
+    throw new Error("Not authorized to perform the action")
+  }
+})
 
 const verifyTokenAuth = (req, res, next) => {
   verify(req, res, () => {

@@ -24,16 +24,6 @@ const verifyTokenAuth = (req, res, next) => {
       return next();
     }
 
-    // For GET requests without a specific id, allow access
-    if (
-      req.method === 'GET' ||
-      req.method === 'POST' ||
-      req.method === 'PUT' ||
-      req.method === 'DELETE'
-    ) {
-      return next();
-    }
-
     // For other requests (e.g., POST) or GET requests with a specific id,
     // verify the user's id against the resource id (if applicable)
     if (req.user.id === req.params.id) {

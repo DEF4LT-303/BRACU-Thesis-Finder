@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.14",
     "@mui/material": "^5.14.14",
+    "@nextui-org/react": "^2.2.9",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.2",
     "eslint-config-prettier": "^9.0.0",

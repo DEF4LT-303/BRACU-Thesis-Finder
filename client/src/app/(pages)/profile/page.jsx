@@ -1,11 +1,25 @@
 'use client';
 
 import EditProfileModal from '@/app/components/EditModal';
+import { Chip } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const Profile = () => {
-  const user = useSelector((state) => state.user.currentUser?.user);
+  const router = useRouter();
+  // const user = useSelector((state) => state.user.currentUser?.user);
+  const user = {
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john@gmail.com',
+    about: 'I am a software engineer',
+    technicalSkills: ['JavaScript', 'React', 'Redux'],
+    github: '',
+    linkedin: '',
+    avatar: ''
+  };
+
   const loading = false;
 
   const dispatch = useDispatch();
@@ -41,6 +55,10 @@ const Profile = () => {
     );
   }
 
+  if (!user) {
+    router.push('/login');
+  }
+
   return (
     <>
       <div className='relatiive'>
@@ -48,6 +66,7 @@ const Profile = () => {
           <EditProfileModal
             isOpen={openModal}
             handleCloseModal={handleCloseModal}
+            data={user}
           />
         )}
         <img
@@ -67,7 +86,7 @@ const Profile = () => {
             </div>
             <div className='flex flex-col sm:flex-row w-full justify-center items-center sm:justify-between gap-1 ml-2 mt-2 sm:mt-10'>
               <div className='text-white font-bold text-xl'>
-                {user?.firstName || 'User'}
+                {`${user?.firstName} ${user?.lastName}` || 'User'}
               </div>
               <div className='flex flex-row gap-3 mt-6'>
                 <div>
@@ -90,6 +109,43 @@ const Profile = () => {
 
         <div className='text-center mb-10'>
           <h1 className='text-2xl font-bold'>Profile</h1>
+        </div>
+
+        {/* User Bio Card */}
+        <div className=' bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8'>
+          <h2 className='text-xl font-bold mb-4  '>About</h2>
+          <p className=''>{user?.about || 'No bio available...'}</p>
+        </div>
+
+        {/* Skills Card */}
+        <div className='bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8'>
+          <h2 className='text-xl font-bold mb-4'>Skills</h2>
+          {user?.technicalSkills.length === 0 ? (
+            <p>No skills available...</p>
+          ) : (
+            <div className='flex flex-wrap gap-2 text-white'>
+              {user?.technicalSkills.map((skill) => (
+                <Chip key={skill} color='primary'>
+                  {skill}
+                </Chip>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Contact Info Card */}
+        <div className='bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8'>
+          <h2 className='text-xl font-bold mb-4'>Contact Information</h2>
+          <div className='mb-4'>
+            <strong>Email:</strong> {user?.email || 'No email provided'}
+          </div>
+          <div className='mb-4'>
+            <strong>GitHub:</strong> {user?.github || 'No GitHub provided'}
+          </div>
+          <div>
+            <strong>LinkedIn:</strong>{' '}
+            {user?.linkedin || 'No LinkedIn provided'}
+          </div>
         </div>
       </div>
     </>

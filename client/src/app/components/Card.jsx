@@ -1,3 +1,5 @@
+import Phases from './Phases';
+
 const Card = ({ feed }) => {
   return (
     <div className='w-full'>
@@ -9,7 +11,7 @@ const Card = ({ feed }) => {
           <span className='text-sm font-light text-gray-600 dark:text-gray-400'>
             {feed.createdAt}
           </span>
-          <div className='flex justify-end gap-2'>
+          <div className='flex flex-wrap justify-center gap-2'>
             {feed.tags.map((tag) => (
               <a
                 key={tag}
@@ -22,6 +24,8 @@ const Card = ({ feed }) => {
             ))}
           </div>
         </div>
+
+        <Phases timeline={feed.phase} />
 
         <div className='mt-2'>
           <a

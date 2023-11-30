@@ -6,7 +6,8 @@ const feeds = [
     title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl quis tincidunt ultricies, nunc nisl ultricies nunc, vitae aliqua',
     createdAt: 'Mar 20, 2023',
-    tags: ['Design', 'Accessibility'],
+    tags: ['Design', 'Accessibility', 'UI', 'Testing'],
+    phase: 4,
     author: {
       name: 'John Doe',
       avatar:

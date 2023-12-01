@@ -1,6 +1,16 @@
 import Phases from './Phases';
 
 const Card = ({ feed }) => {
+  const getDefaultAvatar = (index) => {
+    return (
+      <img
+        src='default.jpg'
+        alt={`Default Avatar ${index + 1}`}
+        className='opacity-50 '
+      />
+    );
+  };
+
   return (
     <div className='w-full'>
       <div
@@ -62,6 +72,25 @@ const Card = ({ feed }) => {
             >
               {feed.author.name}
             </a>
+          </div>
+        </div>
+        <div className='flex justify-center sm:justify-start items-center gap-2 mt-3'>
+          <h2 className='text-xl font-bold '>Applied:</h2>
+          <div className='avatar-group -space-x-6 rtl:space-x-reverse'>
+            {[...Array(4)].map((_, index) => (
+              <div key={index} className='avatar'>
+                <div className='w-10'>
+                  {feed.applied.users[index] ? (
+                    <img
+                      src={feed.applied.users[index].avatar}
+                      alt={`Avatar ${index + 1}`}
+                    />
+                  ) : (
+                    getDefaultAvatar(index)
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

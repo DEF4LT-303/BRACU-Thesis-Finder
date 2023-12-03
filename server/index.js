@@ -37,3 +37,19 @@ const io = require('socket.io')(server,{
     origin: "http://localhost:3000",
   },
 })
+
+io.on("connection",(socket)=>{
+  console.log("connected to socket.io");
+  //creates a new room with the id of the user data
+  socket.on('setup', (userData) => {
+    socket.join(userData._id)//this has created a room for that particular user when he logs in
+    // console.log(userData._id)
+    socket.emit("connected")
+  })
+  //when we will click on any chat,then a room will be created for that particular chat
+  //taking the particular chat._id as parameter
+  socket.on('join chat', (room) => {
+    socket.join(room)
+    console.log('user joined room: ' + room)
+  })
+})

@@ -146,10 +146,10 @@ const addToGroup = asyncHandler(async (req, res) => {
   }
 });
 
+//only admin has access to remove other members and members only can remove themselves from the group 
 const removeFromGroup = asyncHandler(async (req, res) => {
-  const { chatId, userId } = req.body;
-
-  const removed = await Chat.findByIdAndUpdate(
+    const { chatId, userId } = req.body;
+    const removed = await Chat.findByIdAndUpdate(
     chatId,
     {
       $pull: { users: userId }

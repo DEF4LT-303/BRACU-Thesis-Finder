@@ -25,6 +25,15 @@ app.use('/api/users', userRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/message', messageRoutes);
 
-app.listen(process.env.PORT, () =>
+const server = app.listen(process.env.PORT, () =>
   console.log(`Server is running on port ${process.env.PORT}`)
 );
+
+const io = require('socket.io')(server,{
+  //this means the amount of time it will wait while being inactive
+  // the below 60000 denotes that it is gonna wait 60secs before it goes off
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:3000",
+  },
+})

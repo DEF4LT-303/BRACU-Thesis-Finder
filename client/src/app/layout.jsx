@@ -14,7 +14,9 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body>
         <main className='' data-theme='light dark:dark'>
-          <ProviderWrapper>{children}</ProviderWrapper>
+          <ProviderWrapper>
+            {children}
+            </ProviderWrapper>
         </main>
       </body>
     </html>

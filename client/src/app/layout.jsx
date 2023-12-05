@@ -1,6 +1,9 @@
 import ProviderWrapper from '@/provider';
 import { Inter } from 'next/font/google';
 import './globals.css';
+// import ChatProvider from './Context/ChatProvider';
+import { ChakraProvider } from '@chakra-ui/react';
+import ChatProvider from './Context/ChatProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,7 +18,11 @@ export default function RootLayout({ children }) {
       <body>
         <main className='' data-theme='light dark:dark'>
           <ProviderWrapper>
-            {children}
+            <ChatProvider>
+              <ChakraProvider>
+                  {children}
+              </ChakraProvider>
+            </ChatProvider>
             </ProviderWrapper>
         </main>
       </body>

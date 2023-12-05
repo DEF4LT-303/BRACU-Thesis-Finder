@@ -1,5 +1,6 @@
+'use client';
 import React, { useState } from 'react'
-import { ChatState } from '../Context/ChatProvider'
+// import { ChatState } from '../Context/ChatProvider'
 import { Box } from '@chakra-ui/react'
 import SideDrawer from '@/app/components/chatComponents/miscelleneous/SideDrawer'
 import MyChats from '@/app/components/chatComponents/MyChats'

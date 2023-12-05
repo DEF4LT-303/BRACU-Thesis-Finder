@@ -1,9 +1,11 @@
+'use client';
 import { Box, Button, FormControl, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { ChatState } from '@/app/Context/ChatProvider'
 import UserListItem from '../userAvatar/UserListItem'
 import UserBadgeItem from '../userAvatar/UserBadgeItem'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 
 
@@ -18,7 +20,8 @@ const GroupChatModal = ({ children }) => {
 
     const toast = useToast()
 
-    const { user, chats, setChats } = ChatState()
+    const { chats, setChats } = ChatState()
+    const user = useSelector((state) => state.user.currentUser?.user);
 
     const handleSearch = async (query) => {
         setSearch(query)
@@ -30,7 +33,7 @@ const GroupChatModal = ({ children }) => {
             setLoading(true)
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`
+                    Authorization: `Bearer ${user.accessToken}`
                 }
             }
 
@@ -83,7 +86,7 @@ const GroupChatModal = ({ children }) => {
         try {
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`,
+                    Authorization: `Bearer ${user.accessToken}`,
                 },
             };
             const { data } = await axios.post(

@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react'
 import { ChatState } from '@/app/Context/ChatProvider'
 import { Box, FormControl, IconButton, Input, Spinner, Text, useToast } from '@chakra-ui/react'
@@ -9,6 +10,7 @@ import axios from 'axios'
 import './styles.css'
 import ScrollableChat from './ScrollableChat'
 import io from 'socket.io-client'
+import { useSelector } from 'react-redux'
 
 
 
@@ -25,7 +27,8 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
     const [socketConnected,setSocketConnected] = useState(false) //useState for getting connected to a socket acting as a flag
     const[loading,setLoading]=useState(false)
     const[newMessage,setNewMessage]=useState("")
-    const {user,selectedChat, setSelectedChat} = ChatState()
+    const {selectedChat, setSelectedChat} = ChatState()
+    const user = useSelector((state) => state.user.currentUser?.user);
     const [typing,setTyping] = useState(false)
     const [isTyping,setIsTyping] = useState(false)
     const toast = useToast()
@@ -43,7 +46,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
         try {
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`,
+                    Authorization: `Bearer ${user.accessToken}`,
                 },
             };
 
@@ -104,7 +107,7 @@ const SingleChat = ({fetchAgain,setFetchAgain}) => {
                 const config = {
                     headers: {
                         "Content-type": "application/json",
-                        Authorization: `Bearer ${user.token}`,
+                        Authorization: `Bearer ${user.accessToken}`,
                     },
                 }
                 setNewMessage("")

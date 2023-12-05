@@ -1,3 +1,4 @@
+'use client';
 import { Avatar } from "@chakra-ui/avatar";
 import { Box, Text } from "@chakra-ui/layout";
 
@@ -26,11 +27,11 @@ const UserListItem = ({ user, handleFunction }) => {
                 mr={2}
                 size="sm"
                 cursor="pointer"
-                name={user.name}
-                src={user.pic}
+                name={user.firstName}
+                src={user.photo}
             />
             <Box>
-                <Text>{user.name}</Text>
+                <Text>{user.firstName}</Text>
                 <Text fontSize="xs">
                     <b>Email : </b>
                     {user.email}

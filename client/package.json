@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -20,7 +21,7 @@
     "axios": "^1.6.2",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "framer-motion": "^10.16.12",
+    "framer-motion": "^10.16.14",
     "next": "13.5.4",
     "prettier": "^3.0.3",
     "react": "^18",

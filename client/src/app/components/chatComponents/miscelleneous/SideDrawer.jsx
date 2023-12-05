@@ -1,3 +1,4 @@
+'use client';
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
@@ -46,6 +47,7 @@ const SideDrawer = () => {
         chats,
         setChats,
     } = ChatState();
+    const user = useSelector((state) => state.user.currentUser?.user);
   
 //   const history = useHistory()
 const router = useRouter();
@@ -75,7 +77,7 @@ const dispatch = useDispatch();
         setLoading(true)
         const config={
             headers:{
-                Authorization:`Bearer ${user.token}`
+                Authorization:`Bearer ${user.accessToken}`
             }
         }
         
@@ -152,7 +154,7 @@ const dispatch = useDispatch();
                 </Menu>
                 <Menu>
                     <MenuButton as={Button} rightIcon={<ChevronDownIcon/>}>
-                        <Avatar size='sm' cursor='pointer' name={user.name} src={user.pic}/>
+                        <Avatar size='sm' cursor='pointer' name={user.firstName} src={user.photo}/>
                     </MenuButton>
                     <MenuList>
                         <ProfileModal user = {user}>

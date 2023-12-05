@@ -1,3 +1,4 @@
+'use client';
 import { ViewIcon } from '@chakra-ui/icons'
 import { Button, IconButton, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
@@ -31,8 +32,8 @@ const { isOpen, onOpen, onClose } = useDisclosure()
                       <Image
                       borderRadius="full"
                       boxSize="150px"
-                      src={user.pic}
-                      alt={user.name}
+                      src={user.photo}
+                      alt={user.firstName}
                       />
                       <Text
                           fontSize={{ base: "28px", md: "30px" }}

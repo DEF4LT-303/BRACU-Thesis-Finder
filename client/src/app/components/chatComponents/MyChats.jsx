@@ -1,3 +1,4 @@
+'use client';
 import { Box, Button, Stack, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
@@ -6,6 +7,7 @@ import { AddIcon } from '@chakra-ui/icons'
 import { getSender } from '@/app/config/ChatLogics'
 import ChatLoading from './ChatLoading'
 import GroupChatModal from './miscelleneous/GroupChatModal'
+import { useSelector } from 'react-redux'
 // import GroupChatModal from './miscelleneous/GroupChatModal'
 
 
@@ -14,14 +16,15 @@ import GroupChatModal from './miscelleneous/GroupChatModal'
 const MyChats = ({fetchAgain}) => {
 
 const [loggedUser, setLoggedUser] = useState()
-const {  selectedChat, setSelectedChat, user, chats, setChats } = ChatState()
+const {  selectedChat, setSelectedChat, chats, setChats } = ChatState()
+    const user = useSelector((state) => state.user.currentUser?.user);
 const toast = useToast()
 
     const fetchChats = async () => {
         try {
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`,
+                    Authorization: `Bearer ${user.accessToken}`,
                 },
             };
 

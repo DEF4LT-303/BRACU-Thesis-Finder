@@ -1,6 +1,6 @@
 // it is gonna leave the user that is logged in and return the user who is not logged in
 export const getSender = (loggedUser, users) => {
-    return users[0]?._id === loggedUser?._id ? users[1].name : users[0].name;
+    return users[0]?._id === loggedUser?._id ? users[1].firstName : users[0].firstName;
 };
 
 export const getSenderFull = (loggedUser, users)=>{

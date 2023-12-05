@@ -1,3 +1,4 @@
+'use client';
 import { Avatar } from "@chakra-ui/avatar";
 import { Tooltip } from "@chakra-ui/tooltip";
 import ScrollableFeed from "react-scrollable-feed";
@@ -6,8 +7,7 @@ import { isLastMessage, isSameSender , isSameSenderMargin, isSameUser } from "@/
 
 
 const ScrollableChat = ({ messages }) => {
-    const { user } = ChatState();
-
+    const user = useSelector((state) => state.user.currentUser?.user);
     return (
         <ScrollableFeed>
             {messages &&

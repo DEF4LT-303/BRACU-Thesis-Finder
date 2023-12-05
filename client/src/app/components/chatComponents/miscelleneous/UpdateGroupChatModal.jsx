@@ -1,3 +1,4 @@
+'use client';
 import { ViewIcon } from "@chakra-ui/icons";
 import {
     Modal,
@@ -33,8 +34,8 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
     const [renameloading, setRenameLoading] = useState(false);
     const toast = useToast();
 
-    const { selectedChat, setSelectedChat, user } = ChatState();
-
+    const { selectedChat, setSelectedChat} = ChatState();
+    const user = useSelector((state) => state.user.currentUser?.user);
     const handleSearch = async (query) => {
         setSearch(query);
         if (!query) {
@@ -45,7 +46,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
             setLoading(true);
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`,
+                    Authorization: `Bearer ${user.accessToken}`,
                 },
             };
             const { data } = await axios.get(`/api/user?search=${search}`, config);
@@ -72,7 +73,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
             setRenameLoading(true);
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`,
+                    Authorization: `Bearer ${user.accessToken}`,
                 },
             };
             const { data } = await axios.put(
@@ -130,7 +131,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
             setLoading(true);
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`,
+                    Authorization: `Bearer ${user.accessToken}`,
                 },
             };
             const { data } = await axios.put(
@@ -175,7 +176,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
             setLoading(true);
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`,
+                    Authorization: `Bearer ${user.accessToken}`,
                 },
             };
             const { data } = await axios.put(

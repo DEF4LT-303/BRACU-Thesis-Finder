@@ -14,6 +14,22 @@ import {
   updateUserSuccess
 } from './userRedux';
 
+import {
+  createPostFailure,
+  createPostStart,
+  createPostSuccess,
+  deletePostFailure,
+  deletePostStart,
+  deletePostSuccess,
+  getPostByIdSuccess,
+  getPostsFailure,
+  getPostsStart,
+  getPostsSuccess,
+  updatePostFailure,
+  updatePostStart,
+  updatePostSuccess
+} from './postRedux';
+
 // *User API Calls*
 
 export const login = async (dispatch, userCredentials) => {
@@ -66,16 +82,6 @@ export const updateUser = async (id, user, dispatch) => {
   }
 };
 
-export const updateOtherUser = async (id, user, dispatch) => {
-  dispatch(updateStart());
-  try {
-    const res = await userRequest.put(`/users/${id}`, user);
-    dispatch(update(res.data));
-  } catch (err) {
-    dispatch(updateFailure());
-  }
-};
-
 export const findUser = async (id, dispatch) => {
   dispatch(findUserStart());
   try {
@@ -93,5 +99,57 @@ export const deleteUser = async (id, dispatch) => {
     dispatch(remove(id));
   } catch (err) {
     dispatch(updateFailure());
+  }
+};
+
+// *Post API Calls*
+
+export const createPost = async (post, dispatch) => {
+  dispatch(createPostStart());
+  try {
+    const res = await userRequest().post('/posts', post);
+    dispatch(createPostSuccess(res.data));
+  } catch (error) {
+    dispatch(createPostFailure());
+  }
+};
+
+export const getPosts = async (dispatch) => {
+  dispatch(getPostsStart());
+  try {
+    const res = await publicRequest.get('/posts');
+    dispatch(getPostsSuccess(res.data));
+  } catch (error) {
+    dispatch(getPostsFailure());
+  }
+};
+
+export const getPostById = async (id, dispatch) => {
+  dispatch(getPostsStart());
+  try {
+    const res = await publicRequest.get(`/posts/${id}`);
+    dispatch(getPostByIdSuccess(res.data));
+  } catch (error) {
+    dispatch(getPostsFailure());
+  }
+};
+
+export const updatePost = async (id, post, dispatch) => {
+  dispatch(updatePostStart());
+  try {
+    const res = await userRequest().put(`/posts/${id}`, post);
+    dispatch(updatePostSuccess(res.data));
+  } catch (error) {
+    dispatch(updatePostFailure());
+  }
+};
+
+export const deletePost = async (id, dispatch) => {
+  dispatch(deletePostStart());
+  try {
+    const res = await userRequest().delete(`/posts/${id}`);
+    dispatch(deletePostSuccess(res.data));
+  } catch (error) {
+    dispatch(deletePostFailure());
   }
 };

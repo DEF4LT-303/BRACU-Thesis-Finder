@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const postModel = new mongoose.Schema(
+const postSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -8,7 +8,7 @@ const postModel = new mongoose.Schema(
       trim: true
     },
 
-    desc: {
+    description: {
       type: String,
       required: [true, 'Description is required'],
       trim: true
@@ -45,6 +45,6 @@ const postModel = new mongoose.Schema(
   }
 );
 
-const Post = mongoose.model('Post', postModel);
+const Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;

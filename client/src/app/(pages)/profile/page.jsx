@@ -4,23 +4,13 @@ import EditProfileModal from '@/app/components/EditModal';
 import { Chip } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = () => {
   const router = useRouter();
-  // const user = useSelector((state) => state.user.currentUser?.user);
-  const user = {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@gmail.com',
-    about: 'I am a software engineer',
-    technicalSkills: ['JavaScript', 'React', 'Redux'],
-    github: '',
-    linkedin: '',
-    avatar: ''
-  };
+  const user = useSelector((state) => state.user.currentUser);
 
-  const loading = false;
+  const loading = useSelector((state) => state.user.isFetching);
 
   const dispatch = useDispatch();
 
@@ -56,7 +46,7 @@ const Profile = () => {
   }
 
   if (!user) {
-    router.push('/login');
+    router.push('/');
   }
 
   return (

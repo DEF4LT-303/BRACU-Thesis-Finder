@@ -21,8 +21,6 @@ const CreateButton = () => {
     setIsModalOpen(false);
   };
 
-  console.log(isModalOpen);
-
   return (
     <div className='fixed bottom-5 right-5'>
       <button

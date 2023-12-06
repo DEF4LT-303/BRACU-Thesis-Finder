@@ -1,5 +1,6 @@
 'use client';
 
+import { createPost } from '@/api/redux/apiCalls';
 import {
   Chip,
   Modal,
@@ -9,12 +10,15 @@ import {
   ModalHeader
 } from '@nextui-org/react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const CreatePostModal = ({ isOpen, onClose }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState([]);
   const [newTags, setNewTags] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleAddTags = (e) => {
     e.preventDefault();
@@ -30,6 +34,17 @@ const CreatePostModal = ({ isOpen, onClose }) => {
     setTags(updatedTags);
   };
 
+  const handleSave = async () => {
+    const post = {
+      title,
+      description,
+      tags
+    };
+    console.log(post);
+    await createPost(post, dispatch);
+    onClose();
+  };
+
   return (
     <>
       <Modal
@@ -42,7 +57,7 @@ const CreatePostModal = ({ isOpen, onClose }) => {
         }}
       >
         <ModalContent>
-          <div className='bg-base-300'>
+          <div className='bg-base-200 rounded-lg'>
             <ModalHeader className='flex flex-col gap-1 text-center text-2xl'>
               Create Post
             </ModalHeader>
@@ -120,7 +135,7 @@ const CreatePostModal = ({ isOpen, onClose }) => {
               <button className='btn btn-error btn-outline' onClick={onClose}>
                 Close
               </button>
-              <button className='btn btn-primary' onClick={onClose}>
+              <button className='btn btn-primary' onClick={handleSave}>
                 Post
               </button>
             </ModalFooter>

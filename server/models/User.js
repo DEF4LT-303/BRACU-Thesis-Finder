@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   },
 
   githubLink: {
-    type: 'String',
+    type: String,
     default: ''
   },
 

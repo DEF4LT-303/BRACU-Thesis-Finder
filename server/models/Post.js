@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema(
 
     author: {
       type: String,
-      ref: 'User', // Assuming your user model is named 'User'
+      ref: 'users',
       required: [true, 'Author is required']
     },
 

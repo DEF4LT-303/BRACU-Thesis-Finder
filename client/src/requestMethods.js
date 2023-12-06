@@ -13,6 +13,6 @@ export const userRequest = () => {
 
   return axios.create({
     baseURL: BASE_URL,
-    headers: { token: `${TOKEN}` }
+    headers: { Authorization: `Bearer ${TOKEN}` }
   });
 };

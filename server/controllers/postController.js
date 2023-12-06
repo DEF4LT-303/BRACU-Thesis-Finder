@@ -14,7 +14,7 @@ const createPost = async (req, res) => {
 
     const newPost = new Post({
       ...req.body,
-      author: author._id
+      author: author
     });
 
     const savedPost = await newPost.save();
@@ -42,7 +42,14 @@ const getAllPosts = async (req, res) => {
 // Get a post by ID
 const getPost = async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const postId = req.params.id;
+
+    const post = await Post.findById(postId).populate('author').exec();
+
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json(err);

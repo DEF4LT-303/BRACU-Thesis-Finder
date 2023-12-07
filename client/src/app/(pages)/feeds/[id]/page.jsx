@@ -21,9 +21,9 @@ const FeedPage = () => {
   // }, [id, dispatch]);
 
   // const feed = useSelector((state) => state.posts.post);
-  const loading = useSelector((state) => state.posts.isFetching);
+  const { isFetching, error } = useSelector((state) => state.posts);
 
-  if (loading) {
+  if (isFetching) {
     return (
       <div className='py-4 rounded shadow-md w-full h-80 animate-pulse dark:bg-gray-800 mb-8 mx-5 my-5'>
         <div className='flex p-4 space-x-4 sm:px-8'>
@@ -42,7 +42,7 @@ const FeedPage = () => {
     );
   }
 
-  if (!feed) {
+  if (error) {
     return <div className='flex justify-center text-center'>Error</div>;
   }
 
@@ -54,7 +54,11 @@ const FeedPage = () => {
       >
         <div className='flex items-center justify-between flex-col sm:flex-row gap-3'>
           <span className='text-sm font-light text-gray-600 dark:text-gray-400'>
-            {feed.createdAt}
+            {new Date(feed.createdAt).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            })}
           </span>
           <div className='flex flex-wrap justify-center gap-2'>
             {feed.tags &&

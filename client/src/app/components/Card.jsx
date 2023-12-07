@@ -44,14 +44,18 @@ const Card = ({ feed }) => {
 
   return (
     <div className='w-full'>
-      <Link href={`/feeds/${feed.id}`}>
+      <Link href={`/feeds/${feed._id}`}>
         <div
-          key={feed.id}
+          key={feed._id}
           className='my-5 px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800'
         >
           <div className='flex items-center justify-between flex-col sm:flex-row gap-3'>
             <span className='text-sm font-light text-gray-600 dark:text-gray-400'>
-              {feed.createdAt}
+              {new Date(feed.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              })}
             </span>
             <div className='flex flex-wrap justify-center gap-2'>
               {feed.tags.map((tag) => (
@@ -78,7 +82,9 @@ const Card = ({ feed }) => {
             >
               {feed.title}
             </a>
-            <p className='mt-2 text-gray-600 dark:text-gray-300'>{feed.desc}</p>
+            <p className='mt-2 text-gray-600 dark:text-gray-300'>
+              {feed.description}
+            </p>
           </div>
 
           <div className='flex items-center justify-between mt-4'>
@@ -94,7 +100,7 @@ const Card = ({ feed }) => {
             <div className='flex items-center'>
               <img
                 className='object-cover w-10 h-10 mx-4 rounded-full hidden lg:block md:block'
-                src={feed.author.avatar}
+                src={feed.author?.photo || '/default.jpg'}
                 alt='avatar'
               />
               <a
@@ -102,7 +108,7 @@ const Card = ({ feed }) => {
                 tabIndex='0'
                 role='link'
               >
-                {feed.author.name}
+                {feed.author?.firstName} {feed.author?.lastName}
               </a>
             </div>
           </div>
@@ -112,7 +118,7 @@ const Card = ({ feed }) => {
               {[...Array(4)].map((_, index) => (
                 <div key={index} className='avatar'>
                   <div className='w-10'>
-                    {feed.applied.users[index] ? (
+                    {feed.applied.users && feed.applied.users[index] ? (
                       <img
                         src={feed.applied.users[index].avatar}
                         alt={`Avatar ${index + 1}`}

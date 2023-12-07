@@ -80,11 +80,13 @@ const Navbar = () => {
                     <button onClick={handleLogout}>Logout</button>
                   </li>
                   <li>
-                    <div className='avatar'>
-                      <div className='w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
-                        <img src={user.photo || '/default.jpg'} />
+                    <Link href='/profile'>
+                      <div className='avatar'>
+                        <div className='w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2'>
+                          <img src={user.photo || '/default.jpg'} />
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </li>
                 </ul>
               ) : (

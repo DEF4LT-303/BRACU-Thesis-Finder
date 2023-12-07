@@ -1,9 +1,10 @@
 'use client';
 
+import { getPosts } from '@/api/redux/apiCalls';
 import Card from '@/app/components/Card';
 import CreatePostModal from '@/app/components/CreatePostModal';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // TODO - Initial post is public [Phase 1]
 // TODO - On required users, post become private after creating GC [Move to phase 2]
@@ -46,8 +47,14 @@ const CreateButton = () => {
 };
 
 const Feeds = () => {
+  const dispatch = useDispatch();
+
   const feeds = useSelector((state) => state.posts.posts);
   const user = useSelector((state) => state.user.currentUser);
+
+  useEffect(() => {
+    getPosts(dispatch);
+  }, [dispatch]);
 
   if (feeds.length === 0) {
     return (
@@ -64,10 +71,10 @@ const Feeds = () => {
       <h2 className='text-3xl font-bold text-center my-5'>Feeds</h2>
       <div className='flex flex-col items-center md:px-10'>
         {feeds.map((feed) => (
-          <Card feed={feed} />
+          <Card feed={feed} key={feed._id} />
         ))}
       </div>
-      {yser && <CreateButton />}
+      {user && <CreateButton />}
     </div>
   );
 };

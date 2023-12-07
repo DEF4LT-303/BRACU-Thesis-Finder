@@ -1,23 +1,27 @@
 'use client';
 
+// import { getPostById } from '@/api/redux/apiCalls';
 import Phases from '@/app/components/Phases';
-import feeds from '@/data';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+// import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const FeedPage = () => {
   const pathname = usePathname();
-  const id = pathname.split('/').pop(); // Extract the last part of the pathname as the id
-  const [feed, setFeed] = useState(null);
-  const loading = false;
+  const id = pathname.split('/')[2];
+  // const [feed, setFeed] = useState(null);
+  const feed = useSelector((state) =>
+    state.posts.posts.find((post) => post._id === id)
+  );
 
-  useEffect(() => {
-    // Fetch the feed based on the id
-    // You may use your API or data fetching logic here
-    // For demonstration purposes, using a simple filtering from the imported feeds array
-    const selectedFeed = feeds.find((feed) => feed.id === parseInt(id));
-    setFeed(selectedFeed);
-  }, [id]);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   getPostById(id, dispatch);
+  // }, [id, dispatch]);
+
+  // const feed = useSelector((state) => state.posts.post);
+  const loading = useSelector((state) => state.posts.isFetching);
 
   if (loading) {
     return (
@@ -39,28 +43,13 @@ const FeedPage = () => {
   }
 
   if (!feed) {
-    return (
-      <div className='py-4 rounded shadow-md w-full h-80 animate-pulse dark:bg-gray-800 mb-8'>
-        <div className='flex p-4 space-x-4 sm:px-8'>
-          <div className='flex-shrink-0 w-16 h-16 rounded-full dark:bg-gray-700'></div>
-          <div className='flex-1 py-2 space-y-4'>
-            <div className='w-full h-3 rounded dark:bg-gray-700'></div>
-            <div className='w-5/6 h-3 rounded dark:bg-gray-700'></div>
-          </div>
-        </div>
-        <div className='p-4 space-y-4 sm:px-8'>
-          <div className='w-full h-4 rounded dark:bg-gray-700'></div>
-          <div className='w-full h-4 rounded dark:bg-gray-700'></div>
-          <div className='w-3/4 h-4 rounded dark:bg-gray-700'></div>
-        </div>
-      </div>
-    );
+    return <div className='flex justify-center text-center'>Error</div>;
   }
 
   return (
     <div className='w-full px-5'>
       <div
-        key={feed.id}
+        key={feed._id}
         className='my-5 px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800'
       >
         <div className='flex items-center justify-between flex-col sm:flex-row gap-3'>
@@ -68,16 +57,17 @@ const FeedPage = () => {
             {feed.createdAt}
           </span>
           <div className='flex flex-wrap justify-center gap-2'>
-            {feed.tags.map((tag) => (
-              <a
-                key={tag}
-                className='px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500'
-                tabIndex='0'
-                role='button'
-              >
-                {tag}
-              </a>
-            ))}
+            {feed.tags &&
+              feed.tags.map((tag) => (
+                <a
+                  key={tag}
+                  className='px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500'
+                  tabIndex='0'
+                  role='button'
+                >
+                  {tag}
+                </a>
+              ))}
           </div>
         </div>
 
@@ -92,7 +82,9 @@ const FeedPage = () => {
           >
             {feed.title}
           </a>
-          <p className='mt-2 text-gray-600 dark:text-gray-300'>{feed.desc}</p>
+          <p className='mt-2 text-gray-600 dark:text-gray-300'>
+            {feed.description}
+          </p>
         </div>
 
         <div className='flex items-center justify-between mt-4'>
@@ -108,7 +100,7 @@ const FeedPage = () => {
           <div className='flex items-center'>
             <img
               className='object-cover w-10 h-10 mx-4 rounded-full hidden lg:block md:block'
-              src={feed.author.avatar}
+              src={feed.author?.photo || '/default.jpg'}
               alt='avatar'
             />
             <a
@@ -116,7 +108,7 @@ const FeedPage = () => {
               tabIndex='0'
               role='link'
             >
-              {feed.author.name}
+              {feed.author.firstName} {feed.author.lastName}
             </a>
           </div>
         </div>
@@ -126,7 +118,7 @@ const FeedPage = () => {
             {[...Array(4)].map((_, index) => (
               <div key={index} className='avatar'>
                 <div className='w-10'>
-                  {feed.applied.users[index] ? (
+                  {feed.applied.users && feed.applied.users[index] ? (
                     <img
                       src={feed.applied.users[index].avatar}
                       alt={`Avatar ${index + 1}`}

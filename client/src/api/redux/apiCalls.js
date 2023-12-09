@@ -140,6 +140,7 @@ export const updatePost = async (id, post, dispatch) => {
     const res = await userRequest().put(`/posts/${id}`, post);
     dispatch(updatePostSuccess(res.data));
   } catch (error) {
+    console.log(error);
     dispatch(updatePostFailure());
   }
 };

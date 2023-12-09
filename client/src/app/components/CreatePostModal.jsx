@@ -1,6 +1,6 @@
 'use client';
 
-import { createPost } from '@/api/redux/apiCalls';
+import { createPost, updatePost } from '@/api/redux/apiCalls';
 import {
   Chip,
   Modal,
@@ -12,10 +12,10 @@ import {
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-const CreatePostModal = ({ isOpen, onClose }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [tags, setTags] = useState([]);
+const CreatePostModal = ({ isOpen, onClose, data, action }) => {
+  const [title, setTitle] = useState(data?.title || '');
+  const [description, setDescription] = useState(data?.description || '');
+  const [tags, setTags] = useState(data?.tags || []);
   const [newTags, setNewTags] = useState('');
 
   const dispatch = useDispatch();
@@ -34,15 +34,26 @@ const CreatePostModal = ({ isOpen, onClose }) => {
     setTags(updatedTags);
   };
 
-  const handleSave = async () => {
-    const post = {
-      title,
-      description,
-      tags
-    };
-    console.log(post);
-    await createPost(post, dispatch);
-    onClose();
+  const handleClick = async () => {
+    if (action === 'create') {
+      const post = {
+        title,
+        description,
+        tags
+      };
+      console.log(post);
+      await createPost(post, dispatch);
+      onClose();
+    } else {
+      const post = {
+        title,
+        description,
+        tags
+      };
+      console.log(post);
+      await updatePost(data._id, post, dispatch);
+      onClose();
+    }
   };
 
   return (
@@ -135,7 +146,7 @@ const CreatePostModal = ({ isOpen, onClose }) => {
               <button className='btn btn-error btn-outline' onClick={onClose}>
                 Close
               </button>
-              <button className='btn btn-primary' onClick={handleSave}>
+              <button className='btn btn-primary' onClick={handleClick}>
                 Post
               </button>
             </ModalFooter>

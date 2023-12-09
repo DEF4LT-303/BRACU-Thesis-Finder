@@ -41,7 +41,11 @@ const CreateButton = () => {
           />
         </svg>
       </button>
-      <CreatePostModal isOpen={isModalOpen} onClose={closeModal} />
+      <CreatePostModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        action='create'
+      />
     </div>
   );
 };
@@ -55,7 +59,7 @@ const Feeds = () => {
 
   useEffect(() => {
     getPosts(dispatch);
-  }, [dispatch]);
+  }, [feeds.length, dispatch]);
 
   if (feeds.length === 0) {
     return (
@@ -68,20 +72,28 @@ const Feeds = () => {
   }
 
   if (isFetching) {
+    const skeletonArray = Array.from(
+      { length: feeds.length || 4 },
+      (_, index) => index
+    );
     return (
-      <div className='py-4 rounded shadow-md w-full h-80 animate-pulse dark:bg-gray-800 mb-8 mx-5 my-5'>
-        <div className='flex p-4 space-x-4 sm:px-8'>
-          <div className='flex-shrink-0 w-16 h-16 rounded-full dark:bg-gray-700'></div>
-          <div className='flex-1 py-2 space-y-4'>
-            <div className='w-full h-3 rounded dark:bg-gray-700'></div>
-            <div className='w-5/6 h-3 rounded dark:bg-gray-700'></div>
+      <div className='mx-10'>
+        {skeletonArray.map((index) => (
+          <div className='rounded shadow-md h-96 animate-pulse dark:bg-gray-800 mb-8 mx-5 my-5 py-4'>
+            <div className='flex p-4 space-x-4 sm:px-8'>
+              <div className='flex-shrink-0 w-16 h-16 rounded-full dark:bg-gray-700'></div>
+              <div className='flex-1 py-2 space-y-4'>
+                <div className='w-full h-3 rounded dark:bg-gray-700'></div>
+                <div className='w-5/6 h-3 rounded dark:bg-gray-700'></div>
+              </div>
+            </div>
+            <div className='my-7 p-4 space-y-4 sm:px-8'>
+              <div className='w-full h-4 rounded dark:bg-gray-700'></div>
+              <div className='w-full h-4 rounded dark:bg-gray-700'></div>
+              <div className='w-3/4 h-4 rounded dark:bg-gray-700'></div>
+            </div>
           </div>
-        </div>
-        <div className='p-4 space-y-4 sm:px-8'>
-          <div className='w-full h-4 rounded dark:bg-gray-700'></div>
-          <div className='w-full h-4 rounded dark:bg-gray-700'></div>
-          <div className='w-3/4 h-4 rounded dark:bg-gray-700'></div>
-        </div>
+        ))}
       </div>
     );
   }

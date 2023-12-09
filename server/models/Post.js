@@ -36,7 +36,12 @@ const postSchema = new mongoose.Schema(
     },
 
     applied: {
-      type: Array,
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Users'
+        }
+      ],
       default: []
     }
   },

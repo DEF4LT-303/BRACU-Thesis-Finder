@@ -43,7 +43,7 @@ const Card = ({ feed }) => {
   }
 
   return (
-    <div className='w-full'>
+    <div className='w-full px-5 md:px-0'>
       <Link href={`/feeds/${feed._id}`}>
         <div
           key={feed._id}
@@ -59,12 +59,7 @@ const Card = ({ feed }) => {
             </span>
             <div className='flex flex-wrap justify-center gap-2'>
               {feed.tags.map((tag) => (
-                <a
-                  key={tag}
-                  className='px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500'
-                  tabIndex='0'
-                  role='button'
-                >
+                <a className='px-3 py-1 text-sm font-bold text-gray-100 transition-colors duration-300 transform bg-gray-600 rounded cursor-pointer hover:bg-gray-500'>
                   {tag}
                 </a>
               ))}
@@ -74,14 +69,9 @@ const Card = ({ feed }) => {
           <Phases timeline={feed.phase} />
 
           <div className='mt-2'>
-            <a
-              href='#'
-              className='text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline'
-              tabIndex='0'
-              role='link'
-            >
+            <div className='text-xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200'>
               {feed.title}
-            </a>
+            </div>
             <p className='mt-2 text-gray-600 dark:text-gray-300'>
               {feed.description}
             </p>
@@ -118,9 +108,9 @@ const Card = ({ feed }) => {
               {[...Array(4)].map((_, index) => (
                 <div key={index} className='avatar'>
                   <div className='w-10'>
-                    {feed.applied.users && feed.applied.users[index] ? (
+                    {feed.applied.length > 0 && feed.applied[index] ? (
                       <img
-                        src={feed.applied.users[index].avatar}
+                        src={feed.applied[0].photo}
                         alt={`Avatar ${index + 1}`}
                       />
                     ) : (

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL =
-  `${process.env.EXPRESS_API_URL}/api` || 'http://localhost:5000/api/';
+  `${process.env.NEXT_PUBLIC_API_URL}/api` || 'http://localhost:5000/api/';
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL

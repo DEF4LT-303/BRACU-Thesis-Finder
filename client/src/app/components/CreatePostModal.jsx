@@ -1,6 +1,6 @@
 'use client';
 
-import { createPost, updatePost } from '@/api/redux/apiCalls';
+import { createPost, getPosts, updatePost } from '@/api/redux/apiCalls';
 import {
   Chip,
   Modal,
@@ -41,8 +41,8 @@ const CreatePostModal = ({ isOpen, onClose, data, action }) => {
         description,
         tags
       };
-      console.log(post);
       await createPost(post, dispatch);
+      await getPosts(dispatch);
       onClose();
     } else {
       const post = {
@@ -50,8 +50,8 @@ const CreatePostModal = ({ isOpen, onClose, data, action }) => {
         description,
         tags
       };
-      console.log(post);
       await updatePost(data._id, post, dispatch);
+      await getPosts(dispatch);
       onClose();
     }
   };

@@ -5,7 +5,8 @@ const {
   getAllPosts,
   getPost,
   updatePost,
-  deletePost
+  deletePost,
+  applyToPost
 } = require('../controllers/postController');
 const { verify } = require('../middleware/verifyToken');
 
@@ -14,5 +15,6 @@ router.route('/:id').get(getPost);
 router.route('/').post(verify, createPost);
 router.route('/:id').put(verify, updatePost);
 router.route('/:id').delete(verify, deletePost);
+router.route('/:id/apply').put(verify, applyToPost);
 
 module.exports = router;

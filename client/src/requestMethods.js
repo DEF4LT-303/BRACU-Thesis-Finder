@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const BASE_URL =
-  `${process.env.NEXT_PUBLIC_API_URL}/api` || 'http://localhost:5000/api/';
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000/api/'
+    : `${process.env.NEXT_PUBLIC_API_URL}/api/`;
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL

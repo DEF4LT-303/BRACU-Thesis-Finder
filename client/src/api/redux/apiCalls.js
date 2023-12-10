@@ -145,6 +145,17 @@ export const updatePost = async (id, post, dispatch) => {
   }
 };
 
+export const applyToPost = async (id, dispatch) => {
+  dispatch(updatePostStart());
+  try {
+    const res = await userRequest().put(`/posts/${id}/apply`);
+    dispatch(updatePostSuccess(res.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(updatePostFailure());
+  }
+};
+
 export const deletePost = async (id, dispatch) => {
   dispatch(deletePostStart());
   try {

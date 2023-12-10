@@ -26,8 +26,8 @@ const postlice = createSlice({
       state.error = false; // Reset error to false when starting update
     },
     updatePostSuccess: (state, action) => {
-      state.list = state.list.map((post) => {
-        if (post.id === action.payload.id) {
+      state.posts = state.posts.map((post) => {
+        if (post._id === action.payload.id) {
           return action.payload;
         }
         return post;

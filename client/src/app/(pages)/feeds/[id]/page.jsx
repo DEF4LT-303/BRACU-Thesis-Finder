@@ -1,10 +1,10 @@
 'use client';
 
-import { deletePost, getPosts, updatePost } from '@/api/redux/apiCalls';
+import { applyToPost, deletePost, getPosts } from '@/api/redux/apiCalls';
 import CreatePostModal from '@/app/components/CreatePostModal';
 import Phases from '@/app/components/Phases';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const FeedPage = () => {
@@ -20,14 +20,6 @@ const FeedPage = () => {
 
   const { isFetching, error } = useSelector((state) => state.posts);
   const [openModal, setOpenModal] = useState(false);
-  const [isApplied, setIsApplied] = useState(false);
-
-  useEffect(() => {
-    getPosts(dispatch);
-    setIsApplied(
-      feed.applied.some((appliedUser) => appliedUser._id === user?._id)
-    );
-  }, []);
 
   const handleDelete = async () => {
     await deletePost(feed._id, dispatch);
@@ -44,21 +36,8 @@ const FeedPage = () => {
 
   const handleApply = async () => {
     try {
-      if (isApplied) {
-        const updatedPost = {
-          ...feed,
-          applied: feed.applied.filter(
-            (appliedUser) => appliedUser._id.toString() !== user?._id
-          )
-        };
-        await updatePost(feed._id, updatedPost, dispatch);
-      } else {
-        const updatedPost = {
-          ...feed,
-          applied: [...feed.applied, user]
-        };
-        await updatePost(feed._id, updatedPost, dispatch);
-      }
+      await applyToPost(feed._id, dispatch);
+      await getPosts(dispatch);
     } catch (err) {
       console.log(err);
     }

@@ -2,8 +2,9 @@ const jwt = require('jsonwebtoken');
 
 const verify = (req, res, next) => {
   const authHeader = req.headers.authorization;
-
+  console.log('inside');
   if (authHeader) {
+    
     const token = authHeader.split(' ')[1]; // Extract the token after "Bearer "
     jwt.verify(token, process.env.JWT_SEC, (err, user) => {
       if (err) {

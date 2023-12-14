@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const Profile = () => {
   const router = useRouter();
   const user = useSelector((state) => state.user.currentUser);
+  console.log(user);
 
   const loading = useSelector((state) => state.user.isFetching);
 

@@ -1,6 +1,6 @@
 'use client';
 import { ChatState } from '@/app/ChatProvider';
-import { Box, Stack, useToast } from '@chakra-ui/react';
+import { Box, Stack, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';

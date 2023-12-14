@@ -54,7 +54,7 @@ const accessChat = asyncHandler(async (req, res) => {
 const fetchChats = asyncHandler(async (req, res) => {
   try {
     const result = await Chat.find({
-      users: { $elemMatch: { $eq: req.user._id } }
+      users: { $elemMatch: { $eq: req.user.id } }
     })
       .populate('users', '-password')
       .populate('latestMessage')
@@ -73,31 +73,31 @@ const fetchChats = asyncHandler(async (req, res) => {
 });
 
 const createGroupChat = asyncHandler(async (req, res) => {
-  const { users, name } = req.body;
-
-  if (!users || !name) {
-    return res.status(400).send({ message: 'Please fill all the fields' });
+  if (!req.body.users || !req.body.name) {
+    return res.status(400).send({ message: "please fill all the fields" })
   }
 
+  let users = JSON.parse(req.body.users)
+
   if (users.length < 2) {
-    return res.status(400).send('Need more than 2 users'); 
+    return res.status(400).send("need more than 2 users")
   }
 
   console.log(users);
 
   const userId = req.user.id;
-
   console.log(userId);
-  if (!users.includes(userId)) {
-    users = [...users,userId]
-  }
+  const userInfo = await User.findById(userId) 
 
+  console.log(userInfo);
+  users.push(userInfo)
+  
   try {
     const groupChat = await Chat.create({
-      chatName: name,
+      chatName: req.body.name,
       users: users,
       isGroupChat: true,
-      groupAdmin: userId
+      groupAdmin: userInfo
     });
 
     const fullGroupChat = await Chat.findOne({ _id: groupChat._id })

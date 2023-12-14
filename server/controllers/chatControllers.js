@@ -80,12 +80,16 @@ const createGroupChat = asyncHandler(async (req, res) => {
   }
 
   if (users.length < 2) {
-    return res.status(400).send('Need more than 2 users');
+    return res.status(400).send('Need more than 2 users'); 
   }
 
+  console.log(users);
+
   const userId = req.user.id;
+
+  console.log(userId);
   if (!users.includes(userId)) {
-    users.push(userId);
+    users = [...users,userId]
   }
 
   try {

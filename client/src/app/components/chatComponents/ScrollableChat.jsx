@@ -1,7 +1,6 @@
 import { isLastMessage, isSameSender, isSameSenderMargin, isSameUser } from '@/app/ChatLogics';
 import { Avatar } from "@chakra-ui/avatar";
 import { Tooltip } from "@chakra-ui/tooltip";
-import React from 'react'
 import { useSelector } from 'react-redux';
 import ScrollableFeed from "react-scrollable-feed";
 const ScrollableChat = ({ messages }) => {
@@ -20,7 +19,7 @@ const ScrollableChat = ({ messages }) => {
                                         size="sm"
                                         cursor="pointer"
                                         name={m.sender.firstName}
-                                        src={m.sender.photo}
+                                        src={"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"}
                                     />
                                 </Tooltip>
                             )}

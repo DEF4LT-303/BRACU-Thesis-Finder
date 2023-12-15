@@ -4,10 +4,12 @@ import { Box, FormControl, IconButton, Input, Spinner, Text, useToast } from '@c
 import axios from 'axios'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import './styles.css'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import  io  from 'socket.io-client';
 import ProfileModal from './miscelleneous/ProfileModal';
 import { getSenderFull } from '@/app/ChatLogics';
+import ScrollableChat from './ScrollableChat';
+import { useSelector } from 'react-redux';
 
 const ENDPOINT = "http://localhost:5000"
 
@@ -24,14 +26,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const toast = useToast()
     const { selectedChat, setSelectedChat } = ChatState()
 
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: animationData,
-        rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice",
-        },
-    };
+    // const defaultOptions = {
+    //     loop: true,
+    //     autoplay: true,
+    //     animationData: animationData,
+    //     rendererSettings: {
+    //         preserveAspectRatio: "xMidYMid slice",
+    //     },
+    // };
 
     const fetchMessages = async () => {
         if (!selectedChat) return;
@@ -45,7 +47,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             setLoading(true);
 
             const { data } = await axios.get(
-                `/api/message/${selectedChat._id}`,
+                `http://localhost:5000/api/message/${selectedChat._id}`,
                 config
             );
 
@@ -76,7 +78,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 }
                 setNewMessage("")
                 const { data } = await axios.post(
-                    "/api/message",
+                    "http://localhost:5000/api/message",
                     {
                         content: newMessage,
                         chatId: selectedChat._id,

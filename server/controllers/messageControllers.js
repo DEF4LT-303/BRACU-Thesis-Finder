@@ -11,7 +11,7 @@ const sendMessage = asyncHandler(async(req,res)=>{
         return res.sendStatus(400)
     }
     let newMessage ={
-        sender:req.user._id,
+        sender:req.user.id,
         content:content,
         chat:chatId
 

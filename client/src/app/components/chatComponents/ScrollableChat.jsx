@@ -1,5 +1,6 @@
 import { isLastMessage, isSameSender, isSameSenderMargin, isSameUser } from '@/app/ChatLogics';
-import { Avatar, Tooltip } from '@nextui-org/react';
+import { Avatar } from "@chakra-ui/avatar";
+import { Tooltip } from "@chakra-ui/tooltip";
 import React from 'react'
 import { useSelector } from 'react-redux';
 import ScrollableFeed from "react-scrollable-feed";
@@ -12,7 +13,7 @@ const ScrollableChat = ({ messages }) => {
                     <div style={{ display: "flex" }} key={m._id}>
                         {(isSameSender(messages, m, i, user._id) ||
                             isLastMessage(messages, i, user._id)) && (
-                                <Tooltip label={m.sender.FirstName} placement="bottom-start" hasArrow>
+                                <Tooltip label={m.sender.firstName} placement="bottom-start" hasArrow>
                                     <Avatar
                                         mt="7px"
                                         mr={1}

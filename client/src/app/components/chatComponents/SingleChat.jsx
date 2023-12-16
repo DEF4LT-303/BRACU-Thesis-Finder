@@ -43,7 +43,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   // };
 
   const bgImage =
-    'https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg';
+    'https://pixelify.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2020/06/20112726/runnerdesign_2020-3.jpg';
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -222,7 +222,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             )}
 
             <FormControl onKeyDown={sendMessage} isRequired mt={3} mb={-2}>
-              {isTyping ? <div>Typing...</div> : <></>}
+              {isTyping ? (
+                <div className='flex flex-row gap-2'>
+                  Typing
+                  <span className='loading loading-dots loading-xs'></span>
+                </div>
+              ) : (
+                <></>
+              )}
               <Input
                 variant='filled'
                 bg='#E0E0E0'

@@ -1,10 +1,15 @@
 'use client';
 
-import { applyToPost, deletePost, getPosts } from '@/api/redux/apiCalls';
+import {
+  applyToPost,
+  deletePost,
+  getPosts,
+  updatePost
+} from '@/api/redux/apiCalls';
 import CreatePostModal from '@/app/components/CreatePostModal';
 import Phases from '@/app/components/Phases';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const FeedPage = () => {
@@ -42,6 +47,25 @@ const FeedPage = () => {
       console.log(err);
     }
   };
+
+  const handleNextPhase = async () => {
+    try {
+      if (feed.phase < 4) {
+        const updatedPost = {
+          ...feed,
+          phase: feed.phase + 1
+        };
+        await updatePost(feed._id, updatedPost, dispatch);
+        await getPosts(dispatch);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getPosts(dispatch);
+  }, [dispatch]);
 
   if (isFetching) {
     return (
@@ -189,6 +213,16 @@ const FeedPage = () => {
                   : 'Apply'}
               </button>
             )}
+          </div>
+
+          <div className='sm:mr-20'>
+            <button
+              className='btn btn-primary'
+              disabled={feed.phase === 4}
+              onClick={handleNextPhase}
+            >
+              {feed.phase === 4 ? `Completed` : `Next Phase ->`}
+            </button>
           </div>
 
           <div className='flex items-center'>

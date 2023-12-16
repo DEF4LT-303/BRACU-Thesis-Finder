@@ -23,7 +23,7 @@ const Navbar = () => {
             <div className='flex-none'>
               <label
                 htmlFor='my-drawer-3'
-                ariaLabel='open sidebar'
+                aria-label='open sidebar'
                 className='btn btn-square btn-ghost text-[#15191E] dark:text-gray-400'
               >
                 <svg
@@ -110,7 +110,7 @@ const Navbar = () => {
         <div className='drawer-side z-50 '>
           <label
             htmlFor='my-drawer-3'
-            ariaLabel='close sidebar'
+            aria-label='close sidebar'
             className='drawer-overlay'
           ></label>
           <div className='flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto scrollbar-hide dark:bg-[#15191E] bg-neutral-200 border-r rtl:border-r-0 rtl:borderL dark:border-gray-700'>

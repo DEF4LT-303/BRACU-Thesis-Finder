@@ -15,8 +15,8 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import ScrollableChat from './ScrollableChat';
-import './styles.css';
 import UpdateGroupChatModal from './miscelleneous/UpdateGroupChatModal';
+import './styles.css';
 
 const ENDPOINT = 'http://localhost:5000';
 
@@ -45,8 +45,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const bgImage =
     'https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg';
 
-
-    const fetchMessages = async () => {
+  const fetchMessages = async () => {
     if (!selectedChat) return;
     try {
       const config = {
@@ -173,6 +172,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             display='flex'
             justifyContent={{ base: 'space-between' }}
             alignItems='center'
+            className='text-gray-600 dark:text-gray-300'
           >
             <IconButton
               display={{ base: 'flex', md: 'none' }}
@@ -180,20 +180,20 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               onClick={() => setSelectedChat('')}
             />
             {!selectedChat.isGroupChat ? (
-                              <>
-                                  {getSender(user, selectedChat.users)}
-                                  <ProfileModal user={getSenderFull(user, selectedChat.users)} />
-                              </>
-                          ) : (
-                              <>
-                                  {selectedChat.chatName.toUpperCase()}
-                                  <UpdateGroupChatModal
-                                      fetchMessages={fetchMessages}
-                                      fetchAgain={fetchAgain}
-                                      setFetchAgain={setFetchAgain}
-                                  />
-                              </>
-                          )}
+              <>
+                {getSender(user, selectedChat.users)}
+                <ProfileModal user={getSenderFull(user, selectedChat.users)} />
+              </>
+            ) : (
+              <>
+                {selectedChat.chatName.toUpperCase()}
+                <UpdateGroupChatModal
+                  fetchMessages={fetchMessages}
+                  fetchAgain={fetchAgain}
+                  setFetchAgain={setFetchAgain}
+                />
+              </>
+            )}
           </Text>
 
           <Box

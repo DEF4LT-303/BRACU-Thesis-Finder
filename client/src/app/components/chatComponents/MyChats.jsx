@@ -55,7 +55,7 @@ const MyChats = ({ fetchAgain }) => {
       className='dark:bg-[#21272f] bg-neutral-300'
     >
       <Box
-        pb={3}
+        pb={2}
         px={3}
         fontSize={{ base: '28px', md: '30px' }}
         fontFamily='Work sans'
@@ -66,7 +66,7 @@ const MyChats = ({ fetchAgain }) => {
         className='text-gray-600 dark:text-gray-300'
       >
         {' '}
-        My Chats
+        Chats
       </Box>
 
       <Box

@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import ScrollableChat from './ScrollableChat';
 import './styles.css';
+import UpdateGroupChatModal from './miscelleneous/UpdateGroupChatModal';
 
 const ENDPOINT = 'http://localhost:5000';
 
@@ -44,7 +45,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const bgImage =
     'https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg';
 
-  const fetchMessages = async () => {
+
+    const fetchMessages = async () => {
     if (!selectedChat) return;
     try {
       const config = {
@@ -177,7 +179,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat('')}
             />
-            {/* {!selectedChat.isGroupChat ? (
+            {!selectedChat.isGroupChat ? (
                               <>
                                   {getSender(user, selectedChat.users)}
                                   <ProfileModal user={getSenderFull(user, selectedChat.users)} />
@@ -191,7 +193,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                       setFetchAgain={setFetchAgain}
                                   />
                               </>
-                          )} */}
+                          )}
           </Text>
 
           <Box
@@ -201,7 +203,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             p={3}
             bg={`rgba(255, 255, 255, 0.5) url(${bgImage})`}
             w='100%'
-            h='100%'
+            h='93.25%'
             borderRadius='lg'
             overflowY='hidden'
           >
@@ -219,7 +221,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </div>
             )}
 
-            <FormControl onKeyDown={sendMessage} isRequired mt={3}>
+            <FormControl onKeyDown={sendMessage} isRequired mt={3} mb={-2}>
               {isTyping ? <div>Typing...</div> : <></>}
               <Input
                 variant='filled'

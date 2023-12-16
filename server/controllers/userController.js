@@ -36,7 +36,13 @@ const updateUser = async (req, res) => {
       { $set: req.body },
       { new: true }
     );
-    res.status(200).json(updatedUser);
+
+    const updateData = {
+      ...updatedUser._doc,
+      accessToken: req.body.accessToken
+    };
+
+    res.status(200).json(updateData);
   } catch (err) {
     res.status(500).json(err);
   }

@@ -7,7 +7,7 @@ const Header = () => {
   const user = useSelector((state) => state.user.currentUser);
 
   return (
-    <div className='h-full'>
+    <div className='h-full dark:bg-[#21272f] bg-neutral-100'>
       <div className='container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center'>
         <div className='w-full lg:w-1/2'>
           <div className='lg:max-w-lg'>

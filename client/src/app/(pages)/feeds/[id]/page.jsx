@@ -1,10 +1,17 @@
 'use client';
 
-import { applyToPost, deletePost, getPosts } from '@/api/redux/apiCalls';
+import {
+  applyToPost,
+  createChat,
+  deletePost,
+  getPosts,
+  updatePost
+} from '@/api/redux/apiCalls';
+import { ChatState } from '@/app/ChatProvider';
 import CreatePostModal from '@/app/components/CreatePostModal';
 import Phases from '@/app/components/Phases';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const FeedPage = () => {
@@ -14,6 +21,8 @@ const FeedPage = () => {
     state.posts.posts.find((post) => post._id === id)
   );
   const user = useSelector((state) => state.user.currentUser);
+
+  const { chats, setChats } = ChatState();
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -42,6 +51,41 @@ const FeedPage = () => {
       console.log(err);
     }
   };
+
+  const handleNextPhase = async () => {
+    try {
+      if (feed.phase < 4) {
+        const updatedPost = {
+          ...feed,
+          phase: feed.phase + 1
+        };
+
+        await updatePost(feed._id, updatedPost, dispatch);
+        await getPosts(dispatch);
+      }
+
+      if (feed.phase === 1) {
+        const chatTitle = feed.title;
+        const chatUsers = feed.applied.map((user) => user._id);
+        const formattedUsers = JSON.stringify(chatUsers);
+        console.log(formattedUsers);
+
+        const chat = await createChat({
+          name: chatTitle,
+          users: formattedUsers,
+          postId: feed._id
+        });
+
+        setChats([chat, ...chats]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getPosts(dispatch);
+  }, [dispatch]);
 
   if (isFetching) {
     return (
@@ -153,7 +197,9 @@ const FeedPage = () => {
 
         <div className='flex flex-col sm:flex-row items-center justify-between mt-4'>
           <div className='flex flex-col sm:flex-row justify-center sm:justify-start items-center gap-2 mt-3'>
-            <h2 className='text-xl font-bold '>Applied:</h2>
+            <h2 className='text-xl font-bold text-neutral-700 dark:text-neutral-200'>
+              Applied:
+            </h2>
             <div className='avatar-group -space-x-6 rtl:space-x-reverse'>
               {[...Array(4)].map((_, index) => (
                 <div key={index} className='avatar'>
@@ -187,6 +233,16 @@ const FeedPage = () => {
                   : 'Apply'}
               </button>
             )}
+          </div>
+
+          <div className='sm:mr-20'>
+            <button
+              className='btn btn-primary'
+              disabled={feed.phase === 4}
+              onClick={handleNextPhase}
+            >
+              {feed.phase === 4 ? `Completed` : `Next Phase ->`}
+            </button>
           </div>
 
           <div className='flex items-center'>

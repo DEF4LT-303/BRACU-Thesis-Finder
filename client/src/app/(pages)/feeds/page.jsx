@@ -103,8 +103,10 @@ const Feeds = () => {
   }
 
   return (
-    <div className='bg-base-100 min-h-full'>
-      <h2 className='text-3xl font-bold text-center my-5'>Feeds</h2>
+    <div className='dark:bg-[#21272f] bg-neutral-100 min-h-full'>
+      <h2 className='text-3xl font-bold text-center my-5 text-neutral-700 dark:text-neutral-200'>
+        Feeds
+      </h2>
       <div className='flex flex-col items-center md:px-10'>
         {feeds.map((feed) => (
           <Card feed={feed} key={feed._id} />

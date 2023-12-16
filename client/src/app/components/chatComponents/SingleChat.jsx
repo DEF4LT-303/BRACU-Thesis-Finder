@@ -45,6 +45,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const bgImage =
     'https://pixelify.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2020/06/20112726/runnerdesign_2020-3.jpg';
 
+  const baseUrl =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:5000'
+      : process.env.NEXT_PUBLIC_API_URL;
+
   const fetchMessages = async () => {
     if (!selectedChat) return;
     try {
@@ -57,7 +62,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `http://localhost:5000/api/message/${selectedChat._id}`,
+        `${baseUrl}/api/message/${selectedChat._id}`,
         config
       );
 
@@ -88,7 +93,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         };
         setNewMessage('');
         const { data } = await axios.post(
-          'http://localhost:5000/api/message',
+          `${baseUrl}/api/message`,
           {
             content: newMessage,
             chatId: selectedChat._id
@@ -134,7 +139,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io(baseUrl);
     socket.emit('setup', user); //emitting it in the setup socket in the backend
     socket.on('connected', () => setSocketConnected(true)); //when user joins the application
     socket.on('typing', () => setIsTyping(true));
@@ -223,7 +228,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
             <FormControl onKeyDown={sendMessage} isRequired mt={3} mb={-2}>
               {isTyping ? (
-                <div className='flex flex-row gap-2'>
+                <div className='flex flex-row gap-2 text-gray-300'>
                   Typing
                   <span className='loading loading-dots loading-xs'></span>
                 </div>
@@ -231,6 +236,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <></>
               )}
               <Input
+                className='text-gray-300'
                 variant='filled'
                 bg='#E0E0E0'
                 placeholder='Enter a message..'
@@ -247,7 +253,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           justifyContent='center'
           h='100%'
         >
-          <Text fontSize='3xl' pb={3} fontFamily='Work sans'>
+          <Text
+            fontSize='3xl'
+            pb={3}
+            fontFamily='Work sans'
+            className='dark:text-gray-300 text-gray-600'
+          >
             Click on a user to start chatting
           </Text>
         </Box>

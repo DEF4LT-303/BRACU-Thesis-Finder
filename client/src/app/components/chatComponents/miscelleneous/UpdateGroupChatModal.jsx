@@ -25,6 +25,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import UserBadgeItem from '../UserAvatar/UserBadgeItem';
 import UserListItem from '../UserAvatar/UserListItem';
 
+const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000'
+    : process.env.NEXT_PUBLIC_API_URL;
+
 const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [groupChatName, setGroupChatName] = useState();
@@ -52,7 +57,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         }
       };
       const { data } = await axios.get(
-        `http://localhost:5000/api/user?search=${search}`,
+        `${baseUrl}/api/user?search=${search}`,
         config
       );
       console.log(data);
@@ -82,7 +87,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         }
       };
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/rename`,
+        `${baseUrl}/api/chat/rename`,
         {
           chatId: selectedChat._id,
           chatName: groupChatName
@@ -140,7 +145,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         }
       };
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/groupadd`,
+        `${baseUrl}/api/chat/groupadd`,
         {
           chatId: selectedChat._id,
           userId: user1._id
@@ -185,7 +190,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         }
       };
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/groupremove`,
+        `${baseUrl}/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: user1._id

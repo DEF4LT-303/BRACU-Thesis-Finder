@@ -7,6 +7,12 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ChatLoading from './ChatLoading';
 
+const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000'
+    : process.env.NEXT_PUBLIC_API_URL;
+const chatApiUrl = `${baseUrl}/api/chat`;
+
 const MyChats = ({ fetchAgain }) => {
   const user = useSelector((state) => state.user.currentUser);
   const [loggedUser, setLoggedUser] = useState();
@@ -20,10 +26,7 @@ const MyChats = ({ fetchAgain }) => {
         }
       };
 
-      const { data } = await axios.get(
-        'http://localhost:5000/api/chat',
-        config
-      );
+      const { data } = await axios.get(chatApiUrl, config);
       console.log(data);
       setChats(data);
     } catch (error) {

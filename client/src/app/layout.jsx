@@ -1,7 +1,7 @@
 import ProviderWrapper from '@/provider';
 import { Inter } from 'next/font/google';
-import './globals.css';
 import ChatProvider from './ChatProvider';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,11 +14,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <main className='' data-theme='light dark:dark'>
+        <main
+          className='dark:bg-[#21272f] bg-neutral-100'
+          data-theme='light dark:dark'
+        >
           <ProviderWrapper>
-            <ChatProvider>  
-                {children}
-            </ChatProvider>
+            <ChatProvider>{children}</ChatProvider>
           </ProviderWrapper>
         </main>
       </body>

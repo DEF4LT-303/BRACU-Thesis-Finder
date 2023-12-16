@@ -79,7 +79,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div className='flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6'>
+        <div className='flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6 dark:bg-[#21272f] bg-neutral-100'>
           <div className='flex-1'>
             <div className='text-center'>
               <div className='flex justify-center mx-auto '>
@@ -163,7 +163,7 @@ const Login = () => {
                     placeholder='Your Password'
                     required
                     onChange={(e) => setPassword(e.target.value)}
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
+                    className='block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400  border border-gray-200 rounded-lg dark:placeholder-gray-600 bg-inherit dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40'
                   />
                 </div>
 
@@ -176,7 +176,7 @@ const Login = () => {
                   </button>
                 </div>
                 <div className='divider'>OR</div>
-                <button className='btn w-full bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300 dark:hover:bg-slate-700'>
+                <button className='btn w-full bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300 dark:hover:bg-slate-700 hover:bg-slate-200'>
                   {/* <span className='loading loading-spinner'></span> */}
                   <img
                     className='w-6 h-6'

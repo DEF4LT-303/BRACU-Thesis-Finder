@@ -19,11 +19,11 @@ const Navbar = () => {
         <input id='my-drawer-3' type='checkbox' className='drawer-toggle' />
         <div className='drawer-content flex flex-col'>
           {/* Navbar */}
-          <div className='w-full navbar bg-base-300'>
+          <div className='w-full navbar dark:bg-[#15191E] bg-neutral-200'>
             <div className='flex-none'>
               <label
                 htmlFor='my-drawer-3'
-                aria-label='open sidebar'
+                ariaLabel='open sidebar'
                 className='btn btn-square btn-ghost'
               >
                 <svg
@@ -41,7 +41,7 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className='flex-1 lg:px-2 lg:mx-0 gap-3 text-xs lg:text-base'>
+            <div className='flex-1 lg:px-2 lg:mx-0 gap-3 text-xs lg:text-base dark:text-gray-300 text-gray-600'>
               <Link href='/'>
                 <svg
                   id='Layer_1'
@@ -77,7 +77,12 @@ const Navbar = () => {
               {user ? (
                 <ul className='menu menu-horizontal flex items-center'>
                   <li>
-                    <button onClick={handleLogout}>Logout</button>
+                    <button
+                      onClick={handleLogout}
+                      className='dark:text-gray-300 text-gray-600'
+                    >
+                      Logout
+                    </button>
                   </li>
                   <li>
                     <Link href='/profile'>
@@ -105,10 +110,10 @@ const Navbar = () => {
         <div className='drawer-side z-50 '>
           <label
             htmlFor='my-drawer-3'
-            aria-label='close sidebar'
+            ariaLabel='close sidebar'
             className='drawer-overlay'
           ></label>
-          <div className='flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto scrollbar-hide bg-neutral-content border-r rtl:border-r-0 rtl:border-l dark:bg-base-200 dark:border-gray-700'>
+          <div className='flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto scrollbar-hide dark:bg-[#15191E] bg-neutral-200 border-r rtl:border-r-0 rtl:borderL dark:border-gray-700'>
             <svg
               id='Layer_1'
               data-name='Layer 1'
@@ -141,7 +146,7 @@ const Navbar = () => {
               <nav className='flex-1 -mx-3 space-y-3 '>
                 <Link
                   href='/'
-                  className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                  className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform roundedLg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                 >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -162,7 +167,7 @@ const Navbar = () => {
                 </Link>
 
                 <Link
-                  className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                  className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform roundedLg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                   href='/feeds'
                 >
                   <svg
@@ -185,7 +190,7 @@ const Navbar = () => {
 
                 {user && (
                   <Link
-                    className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                    className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform roundedLg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                     href='/profile'
                   >
                     <svg
@@ -210,22 +215,22 @@ const Navbar = () => {
 
                 {user && (
                   <Link
-                    className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                    className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform roundedLg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                     href='/chats'
                   >
                     <svg
-                      className='w-6 h-6 text-gray-800 dark:text-white'
+                      class='w-6 h-6 text-gray-800 dark:text-white'
                       aria-hidden='true'
                       xmlns='http://www.w3.org/2000/svg'
                       fill='none'
-                      viewBox='0 0 14 18'
+                      viewBox='0 0 20 18'
                     >
                       <path
                         stroke='currentColor'
                         strokeLinecap='round'
                         strokeLinejoin='round'
                         strokeWidth='1'
-                        d='M7 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-2 3h4a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z'
+                        d='M16 5h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-2v3l-4-3H8m4-13H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2v3l4-3h4a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z'
                       />
                     </svg>
 
@@ -234,29 +239,7 @@ const Navbar = () => {
                 )}
 
                 <Link
-                  className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
-                  href='/users'
-                >
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    strokeWidth='1.5'
-                    stroke='currentColor'
-                    className='w-6 h-6'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z'
-                    />
-                  </svg>
-
-                  <span className='mx-2 text-md font-medium'>Users</span>
-                </Link>
-
-                <Link
-                  className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+                  className='flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform roundedLg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
                   href='/settings'
                 >
                   <svg
@@ -284,7 +267,7 @@ const Navbar = () => {
               </nav>
 
               <div className='mt-6'>
-                <div className='p-3 bg-gray-100 rounded-lg dark:bg-gray-800'>
+                <div className='p-3 bg-gray-100 roundedLg dark:bg-gray-800'>
                   <h2 className='text-sm font-medium text-gray-800 dark:text-white'>
                     Features Under Development
                   </h2>
@@ -294,7 +277,7 @@ const Navbar = () => {
                   </p>
 
                   <img
-                    className='object-cover w-full h-32 mt-2 rounded-lg'
+                    className='object-cover w-full h-32 mt-2 roundedLg'
                     src='https://images.unsplash.com/photo-1658953229664-e8d5ebd039ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&h=1374&q=80'
                     alt=''
                   />

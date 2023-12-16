@@ -153,7 +153,9 @@ const FeedPage = () => {
 
         <div className='flex flex-col sm:flex-row items-center justify-between mt-4'>
           <div className='flex flex-col sm:flex-row justify-center sm:justify-start items-center gap-2 mt-3'>
-            <h2 className='text-xl font-bold '>Applied:</h2>
+            <h2 className='text-xl font-bold text-neutral-700 dark:text-neutral-200'>
+              Applied:
+            </h2>
             <div className='avatar-group -space-x-6 rtl:space-x-reverse'>
               {[...Array(4)].map((_, index) => (
                 <div key={index} className='avatar'>

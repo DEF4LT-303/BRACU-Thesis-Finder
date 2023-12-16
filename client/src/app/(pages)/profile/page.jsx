@@ -52,7 +52,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className='relatiive'>
+      <div className='relatiive dark:bg-[#21272f] bg-neutral-100'>
         {openModal && (
           <EditProfileModal
             isOpen={openModal}
@@ -76,7 +76,7 @@ const Profile = () => {
               />
             </div>
             <div className='flex flex-col sm:flex-row w-full justify-center items-center sm:justify-between gap-1 ml-2 mt-2 sm:mt-10'>
-              <div className='text-white font-bold text-xl'>
+              <div className='text-gray-600 dark:text-gray-300 font-bold text-xl'>
                 {`${user?.firstName} ${user?.lastName}` || 'User'}
               </div>
               <div className='flex flex-row gap-3 mt-6'>
@@ -99,17 +99,19 @@ const Profile = () => {
         <hr className='my-6 mx-5 border-gray-200 md:my-10 dark:border-gray-700' />
 
         <div className='text-center mb-10'>
-          <h1 className='text-2xl font-bold'>Profile</h1>
+          <h1 className='text-2xl font-bold text-gray-600 dark:text-gray-300'>
+            Profile
+          </h1>
         </div>
 
         {/* User Bio Card */}
-        <div className=' bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8'>
-          <h2 className='text-xl font-bold mb-4  '>About</h2>
+        <div className=' bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
+          <h2 className='text-xl font-bold mb-4 '>About</h2>
           <p className=''>{user?.about || 'No bio available...'}</p>
         </div>
 
         {/* Skills Card */}
-        <div className='bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8'>
+        <div className='bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
           <h2 className='text-xl font-bold mb-4'>Skills</h2>
           {user?.technicalSkills.length === 0 ? (
             <p>No skills available...</p>
@@ -125,8 +127,8 @@ const Profile = () => {
         </div>
 
         {/* Contact Info Card */}
-        <div className='bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8'>
-          <h2 className='text-xl font-bold mb-4'>Contact Information</h2>
+        <div className='bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
+          <h2 className='text-xl font-bold mb-4 '>Contact Information</h2>
           <div className='mb-4'>
             <strong>Email:</strong> {user?.email || 'No email provided'}
           </div>

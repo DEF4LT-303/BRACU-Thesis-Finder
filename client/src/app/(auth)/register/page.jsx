@@ -121,7 +121,7 @@ const Register = () => {
           </div>
         </div>
 
-        <div class='flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5'>
+        <div class='flex items-center w-full max-w-3xl p-8 mx-auto lg:px-15 lg:w-3/5 dark:bg-[#21272f] bg-neutral-100'>
           <div class='w-full'>
             <h1 class='text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white'>
               Create Account
@@ -216,7 +216,7 @@ const Register = () => {
                   />
                 </svg>
               </button>
-              <button className='btn w-full bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300 dark:hover:bg-slate-700'>
+              <button className='btn w-full bg-inherit border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:hover:text-slate-300 dark:hover:bg-slate-700 hover:bg-slate-200'>
                 {/* <span className='loading loading-spinner'></span> */}
                 <img
                   className='w-6 h-6'

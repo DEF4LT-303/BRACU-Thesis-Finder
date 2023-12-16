@@ -164,7 +164,7 @@ const removeFromGroup = asyncHandler(async (req, res) => {
     .populate('groupAdmin', '-password');
   if (!removed) {
     res.status(404);
-    throw new Error('failed to add');
+    throw new Error('failed to remove');
   } else {
     res.json(removed);
   }

@@ -24,13 +24,13 @@ const Navbar = () => {
               <label
                 htmlFor='my-drawer-3'
                 ariaLabel='open sidebar'
-                className='btn btn-square btn-ghost'
+                className='btn btn-square btn-ghost text-[#15191E] dark:text-gray-400'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'
-                  className='inline-block w-6 h-6 stroke-current'
+                  className='inline-block w-6 h-6 stroke-current '
                 >
                   <path
                     strokeLinecap='round'
@@ -95,7 +95,7 @@ const Navbar = () => {
                   </li>
                 </ul>
               ) : (
-                <ul className='menu menu-horizontal flex items-center'>
+                <ul className='menu menu-horizontal flex items-center dark:text-gray-300 text-gray-600'>
                   <li>
                     <Link href='/login'>Login</Link>
                   </li>

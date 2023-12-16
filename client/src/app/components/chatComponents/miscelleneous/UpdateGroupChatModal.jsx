@@ -19,9 +19,10 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
-import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../UserAvatar/UserBadgeItem";
 import UserListItem from "../UserAvatar/UserListItem";
+import { useSelector } from "react-redux";
+import { ChatState } from "@/app/ChatProvider";
 
 
 
@@ -50,7 +51,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
                     Authorization: `Bearer ${user.accessToken}`,
                 },
             };
-            const { data } = await axios.get(`/api/user?search=${search}`, config);
+            const { data } = await axios.get(`http://localhost:5000/api/user?search=${search}`, config);
             console.log(data);
             setLoading(false);
             setSearchResult(data);
@@ -78,7 +79,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
                 },
             };
             const { data } = await axios.put(
-                `/api/chat/rename`,
+                `http://localhost:5000/api/chat/rename`,
                 {
                     chatId: selectedChat._id,
                     chatName: groupChatName,
@@ -136,7 +137,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
                 },
             };
             const { data } = await axios.put(
-                `/api/chat/groupadd`,
+                `http://localhost:5000/api/chat/groupadd`,
                 {
                     chatId: selectedChat._id,
                     userId: user1._id,
@@ -177,11 +178,11 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
             setLoading(true);
             const config = {
                 headers: {
-                    Authorization: `Bearer ${user.token}`,
+                    Authorization: `Bearer ${user.accessToken}`,
                 },
             };
             const { data } = await axios.put(
-                `/api/chat/groupremove`,
+                `http://localhost:5000/api/chat/groupremove`,
                 {
                     chatId: selectedChat._id,
                     userId: user1._id,

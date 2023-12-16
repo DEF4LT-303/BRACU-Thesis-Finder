@@ -104,13 +104,13 @@ const Profile = () => {
         </div>
 
         {/* User Bio Card */}
-        <div className=' bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
+        <div className=' bg-slate-50 dark:bg-[#15191E] rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
           <h2 className='text-xl font-bold mb-4 '>About</h2>
           <p className=''>{user?.about || 'No bio available...'}</p>
         </div>
 
         {/* Skills Card */}
-        <div className='bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
+        <div className='bg-slate-50 dark:bg-[#15191E] rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
           <h2 className='text-xl font-bold mb-4'>Skills</h2>
           {user?.technicalSkills.length === 0 ? (
             <p>No skills available...</p>
@@ -126,7 +126,7 @@ const Profile = () => {
         </div>
 
         {/* Contact Info Card */}
-        <div className='bg-slate-50 dark:bg-base-300 rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
+        <div className='bg-slate-50 dark:bg-[#15191E] rounded-lg p-6 mx-6 shadow-md mb-8 text-gray-600 dark:text-gray-400'>
           <h2 className='text-xl font-bold mb-4 '>Contact Information</h2>
           <div className='mb-4'>
             <strong>Email:</strong> {user?.email || 'No email provided'}

@@ -165,3 +165,14 @@ export const deletePost = async (id, dispatch) => {
     dispatch(deletePostFailure());
   }
 };
+
+// **Chat API Calls**
+
+export const createChat = async (chatName) => {
+  try {
+    const res = await userRequest().post('/group', chatName);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

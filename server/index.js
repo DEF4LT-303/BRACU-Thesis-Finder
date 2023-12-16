@@ -33,7 +33,7 @@ const server = app.listen(process.env.PORT, () =>
 
 const isProduction = process.env.NODE_ENV === 'production';
 const allowedOrigins = isProduction
-  ? ['https://chat-app-frontend-1.vercel.app']
+  ? ['https://bracu-thesis-finder.vercel.app/']
   : ['http://localhost:3000'];
 
 const io = require('socket.io')(server, {

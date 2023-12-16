@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 const Profile = () => {
   const router = useRouter();
   const user = useSelector((state) => state.user.currentUser);
-  console.log(user);
 
   const loading = useSelector((state) => state.user.isFetching);
 
@@ -70,7 +69,7 @@ const Profile = () => {
           <div className='flex flex-col sm:flex-row gap-2 items-center px-5 ml-5 mt-[-105px]'>
             <div className='w-20 h-20 z-0 rounded-full overflow-hidden ring ring-offset-2 ring-offset-primary '>
               <img
-                src={user?.avatar || '/default.jpg'}
+                src={user?.photo || '/default.jpg'}
                 alt='avatar'
                 className='w-full h-full object-cover'
               />

@@ -75,7 +75,8 @@ export const getUsers = async (dispatch) => {
 export const updateUser = async (id, user, dispatch) => {
   dispatch(updateUserStart());
   try {
-    const res = await userRequest.put(`/users/${id}`, user);
+    const res = await userRequest().put(`/users/${id}`, user);
+    console.log(res.data);
     dispatch(updateUserSuccess(res.data));
   } catch (err) {
     dispatch(updateUserFailure());

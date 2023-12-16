@@ -6,7 +6,7 @@ const {
   updateUser,
   deleteUser
 } = require('../controllers/userController');
-const { verifyTokenAuth } = require('../middleware/verifyToken');
+const { verifyTokenAuth, verify } = require('../middleware/verifyToken');
 
 router.route('/').get(getUsers);
 router.route('/:id').get(getUser);

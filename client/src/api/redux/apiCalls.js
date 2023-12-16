@@ -169,9 +169,9 @@ export const deletePost = async (id, dispatch) => {
 
 // **Chat API Calls**
 
-export const createChat = async (chatName) => {
+export const createChat = async (chatInfo) => {
   try {
-    const res = await userRequest().post('/group', chatName);
+    const res = await userRequest().post('/chat/group', chatInfo);
     return res.data;
   } catch (error) {
     console.log(error);

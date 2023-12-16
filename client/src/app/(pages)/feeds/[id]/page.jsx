@@ -2,10 +2,12 @@
 
 import {
   applyToPost,
+  createChat,
   deletePost,
   getPosts,
   updatePost
 } from '@/api/redux/apiCalls';
+import { ChatState } from '@/app/ChatProvider';
 import CreatePostModal from '@/app/components/CreatePostModal';
 import Phases from '@/app/components/Phases';
 import { usePathname, useRouter } from 'next/navigation';
@@ -19,6 +21,8 @@ const FeedPage = () => {
     state.posts.posts.find((post) => post._id === id)
   );
   const user = useSelector((state) => state.user.currentUser);
+
+  const { chats, setChats } = ChatState();
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -55,8 +59,24 @@ const FeedPage = () => {
           ...feed,
           phase: feed.phase + 1
         };
+
         await updatePost(feed._id, updatedPost, dispatch);
         await getPosts(dispatch);
+      }
+
+      if (feed.phase === 1) {
+        const chatTitle = feed.title;
+        const chatUsers = feed.applied.map((user) => user._id);
+        const formattedUsers = JSON.stringify(chatUsers);
+        console.log(formattedUsers);
+
+        const chat = await createChat({
+          name: chatTitle,
+          users: formattedUsers,
+          postId: feed._id
+        });
+
+        setChats([chat, ...chats]);
       }
     } catch (err) {
       console.log(err);

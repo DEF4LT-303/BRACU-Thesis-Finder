@@ -135,7 +135,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io(ENDPOINT); //first connection with server socket.io
     socket.emit('setup', user); //emitting it in the setup socket in the backend
     socket.on('connected', () => setSocketConnected(true)); //when user joins the application
     socket.on('typing', () => setIsTyping(true));
